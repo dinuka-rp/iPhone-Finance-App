@@ -1,5 +1,5 @@
 //
-//  SettingsController.swift
+//  HelpController.swift
 //  FinCal
 //
 //  Created by Dinuka Piyadigama on 2022-03-10.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsController: UIViewController {
+class HelpController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

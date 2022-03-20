@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9C01FB4827D14D7B001B1EF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB4727D14D7B001B1EF5 /* AppDelegate.swift */; };
 		9C01FB4A27D14D7B001B1EF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB4927D14D7B001B1EF5 /* SceneDelegate.swift */; };
-		9C01FB4C27D14D7B001B1EF5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB4B27D14D7B001B1EF5 /* ViewController.swift */; };
 		9C01FB4F27D14D7B001B1EF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C01FB4D27D14D7B001B1EF5 /* Main.storyboard */; };
 		9C01FB5227D14D7B001B1EF5 /* FinCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB5027D14D7B001B1EF5 /* FinCal.xcdatamodeld */; };
 		9C01FB5427D14D7B001B1EF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C01FB5327D14D7B001B1EF5 /* Assets.xcassets */; };
@@ -17,10 +16,18 @@
 		9C01FB6227D14D7C001B1EF5 /* FinCalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB6127D14D7C001B1EF5 /* FinCalTests.swift */; };
 		9C01FB6C27D14D7C001B1EF5 /* FinCalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB6B27D14D7C001B1EF5 /* FinCalUITests.swift */; };
 		9C01FB6E27D14D7C001B1EF5 /* FinCalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FB6D27D14D7C001B1EF5 /* FinCalUITestsLaunchTests.swift */; };
+		9C2D379D27E72EA20005A6B1 /* SimpleSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2D379C27E72EA20005A6B1 /* SimpleSaving.swift */; };
+		9C2D379F27E730C80005A6B1 /* CompoundSaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2D379E27E730C80005A6B1 /* CompoundSaving.swift */; };
+		9C2D37A127E731AE0005A6B1 /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2D37A027E731AE0005A6B1 /* Loan.swift */; };
 		9C4B945127D9F1780004FE67 /* SimpleSavingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B945027D9F1780004FE67 /* SimpleSavingsController.swift */; };
 		9C4B945327D9F1B20004FE67 /* LoanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B945227D9F1B20004FE67 /* LoanController.swift */; };
 		9C4B945527D9F2960004FE67 /* CompoundSavingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B945427D9F2960004FE67 /* CompoundSavingsController.swift */; };
-		9C4B945727D9F4520004FE67 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B945627D9F4520004FE67 /* SettingsController.swift */; };
+		9C4B945927DA12D40004FE67 /* HelpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B945827DA12D40004FE67 /* HelpController.swift */; };
+		9C4B945D27DA3C130004FE67 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B945C27DA3C130004FE67 /* DoubleExtension.swift */; };
+		9C4B947327DA4CE50004FE67 /* CustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B947227DA4CE50004FE67 /* CustomKeyboard.swift */; };
+		9C4B947827DA62B50004FE67 /* CustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B947727DA62B50004FE67 /* CustomKeyboard.xib */; };
+		9C4B947A27DA66D70004FE67 /* SimpleSavings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B947927DA66D70004FE67 /* SimpleSavings.swift */; };
+		9CB8A20E27DC8FCF00110A84 /* Compounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A20D27DC8FCF00110A84 /* Compounds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +51,6 @@
 		9C01FB4427D14D7B001B1EF5 /* FinCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C01FB4727D14D7B001B1EF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C01FB4927D14D7B001B1EF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9C01FB4B27D14D7B001B1EF5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9C01FB4E27D14D7B001B1EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C01FB5127D14D7B001B1EF5 /* FinCal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinCal.xcdatamodel; sourceTree = "<group>"; };
 		9C01FB5327D14D7B001B1EF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,10 +61,18 @@
 		9C01FB6727D14D7C001B1EF5 /* FinCalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinCalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C01FB6B27D14D7C001B1EF5 /* FinCalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinCalUITests.swift; sourceTree = "<group>"; };
 		9C01FB6D27D14D7C001B1EF5 /* FinCalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinCalUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9C2D379C27E72EA20005A6B1 /* SimpleSaving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSaving.swift; sourceTree = "<group>"; };
+		9C2D379E27E730C80005A6B1 /* CompoundSaving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSaving.swift; sourceTree = "<group>"; };
+		9C2D37A027E731AE0005A6B1 /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		9C4B945027D9F1780004FE67 /* SimpleSavingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSavingsController.swift; sourceTree = "<group>"; };
 		9C4B945227D9F1B20004FE67 /* LoanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanController.swift; sourceTree = "<group>"; };
 		9C4B945427D9F2960004FE67 /* CompoundSavingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSavingsController.swift; sourceTree = "<group>"; };
-		9C4B945627D9F4520004FE67 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		9C4B945827DA12D40004FE67 /* HelpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpController.swift; sourceTree = "<group>"; };
+		9C4B945C27DA3C130004FE67 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		9C4B947227DA4CE50004FE67 /* CustomKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboard.swift; sourceTree = "<group>"; };
+		9C4B947727DA62B50004FE67 /* CustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomKeyboard.xib; sourceTree = "<group>"; };
+		9C4B947927DA66D70004FE67 /* SimpleSavings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSavings.swift; sourceTree = "<group>"; };
+		9CB8A20D27DC8FCF00110A84 /* Compounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compounds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +123,8 @@
 		9C01FB4627D14D7B001B1EF5 /* FinCal */ = {
 			isa = PBXGroup;
 			children = (
+				9C2D379B27E72E5B0005A6B1 /* Models */,
+				9C4B945A27DA30BE0004FE67 /* Extensions */,
 				9C4B944C27D85A4A0004FE67 /* Startup */,
 				9C4B944B27D85A390004FE67 /* Controllers */,
 				9C4B944D27D85A560004FE67 /* Views */,
@@ -136,14 +152,23 @@
 			path = FinCalUITests;
 			sourceTree = "<group>";
 		};
+		9C2D379B27E72E5B0005A6B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9C2D379C27E72EA20005A6B1 /* SimpleSaving.swift */,
+				9C2D379E27E730C80005A6B1 /* CompoundSaving.swift */,
+				9C2D37A027E731AE0005A6B1 /* Loan.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9C4B944B27D85A390004FE67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9C01FB4B27D14D7B001B1EF5 /* ViewController.swift */,
 				9C4B945027D9F1780004FE67 /* SimpleSavingsController.swift */,
 				9C4B945227D9F1B20004FE67 /* LoanController.swift */,
 				9C4B945427D9F2960004FE67 /* CompoundSavingsController.swift */,
-				9C4B945627D9F4520004FE67 /* SettingsController.swift */,
+				9C4B945827DA12D40004FE67 /* HelpController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -162,8 +187,36 @@
 			children = (
 				9C01FB4D27D14D7B001B1EF5 /* Main.storyboard */,
 				9C01FB5527D14D7B001B1EF5 /* LaunchScreen.storyboard */,
+				9C4B947427DA4CF50004FE67 /* CustomKeyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9C4B945A27DA30BE0004FE67 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B945B27DA33550004FE67 /* Calculations */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C4B945B27DA33550004FE67 /* Calculations */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B945C27DA3C130004FE67 /* DoubleExtension.swift */,
+				9C4B947927DA66D70004FE67 /* SimpleSavings.swift */,
+				9CB8A20D27DC8FCF00110A84 /* Compounds.swift */,
+			);
+			path = Calculations;
+			sourceTree = "<group>";
+		};
+		9C4B947427DA4CF50004FE67 /* CustomKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B947727DA62B50004FE67 /* CustomKeyboard.xib */,
+				9C4B947227DA4CE50004FE67 /* CustomKeyboard.swift */,
+			);
+			path = CustomKeyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +326,7 @@
 				9C01FB5727D14D7B001B1EF5 /* LaunchScreen.storyboard in Resources */,
 				9C01FB5427D14D7B001B1EF5 /* Assets.xcassets in Resources */,
 				9C01FB4F27D14D7B001B1EF5 /* Main.storyboard in Resources */,
+				9C4B947827DA62B50004FE67 /* CustomKeyboard.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,13 +351,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C4B945727D9F4520004FE67 /* SettingsController.swift in Sources */,
+				9CB8A20E27DC8FCF00110A84 /* Compounds.swift in Sources */,
 				9C01FB5227D14D7B001B1EF5 /* FinCal.xcdatamodeld in Sources */,
-				9C01FB4C27D14D7B001B1EF5 /* ViewController.swift in Sources */,
+				9C2D379F27E730C80005A6B1 /* CompoundSaving.swift in Sources */,
+				9C2D37A127E731AE0005A6B1 /* Loan.swift in Sources */,
+				9C4B947327DA4CE50004FE67 /* CustomKeyboard.swift in Sources */,
+				9C2D379D27E72EA20005A6B1 /* SimpleSaving.swift in Sources */,
 				9C4B945527D9F2960004FE67 /* CompoundSavingsController.swift in Sources */,
+				9C4B947A27DA66D70004FE67 /* SimpleSavings.swift in Sources */,
+				9C4B945D27DA3C130004FE67 /* DoubleExtension.swift in Sources */,
 				9C01FB4827D14D7B001B1EF5 /* AppDelegate.swift in Sources */,
 				9C4B945127D9F1780004FE67 /* SimpleSavingsController.swift in Sources */,
 				9C01FB4A27D14D7B001B1EF5 /* SceneDelegate.swift in Sources */,
+				9C4B945927DA12D40004FE67 /* HelpController.swift in Sources */,
 				9C4B945327D9F1B20004FE67 /* LoanController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
