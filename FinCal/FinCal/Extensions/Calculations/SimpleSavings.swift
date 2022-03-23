@@ -60,11 +60,11 @@ extension UIViewController {
     
     /// Calculate the Future value,  without monthly contributions (fixed sum)
     /// - Returns: Future Value
-    func estimateFutureValueFS(presentValue: Double, interest: Double, noOfYears: Double, compoundsPerYear: Double) -> Double {
+    func estimateFutureValueFS(presentValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
 
         let P = Double(presentValue)
         let r = Double(interest) / 100
-        let t = Double(noOfYears)
+        let t = Double(timeInYears)
         let CpY = Double(compoundsPerYear)
         let A = Double(P * (pow((1 + r / CpY), CpY * t)))
 
