@@ -16,13 +16,18 @@ class SimpleSavingsController: UIViewController {
     @IBOutlet weak var yearsToggle: UISwitch!
     
     // TODO: positive/ negative needs to be saved and updated in the keyboard as well?, based on the text in the textfield (+ or - number)
-    
+
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
     
+    let compoundsPerYear = 12.0  // hard code this as a global variable somewhere else?
     var lastCalculatedTfTag:Int?
     
     let defaults = UserDefaults.standard
-    
+//    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("FinCal.plist")
+//    TODO: (Extra) check if using a custom plist file will allow us to see all the properties of the dictionary separately
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,11 +48,42 @@ class SimpleSavingsController: UIViewController {
         let timeNumPaymentsTextField = getTextFieldByTag(tag: 4)
         updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!)
         
-        // TODO: load textfield values from user defaults
-        
-        
-        // MARK: load lastCalculatedTfTagSimpleSavings
-//        lastCalculatedTfTag = defaults.integer(forKey: "lastCalculatedTfTagSimpleSavings")
+        // load textfield values from user defaults
+        // Read/Get Data
+        if let data = UserDefaults.standard.data(forKey: "SimpleSaving") {
+            do {
+                // Decode Note
+                let simpleSaving = try decoder.decode(SimpleSaving.self, from: data)
+
+                // display values in respective text fields
+                if simpleSaving.presentValue != nil{
+                    let presentValueTf =  getTextFieldByTag(tag: 1)
+                    presentValueTf?.text = "\(simpleSaving.presentValue!)"
+                }
+                if simpleSaving.interest != nil{
+                    let interestTf =  getTextFieldByTag(tag: 2)
+                    interestTf?.text = "\(simpleSaving.interest!)"
+                }
+                if simpleSaving.futureValue != nil{
+                    let futureValueTf =  getTextFieldByTag(tag: 3)
+                    futureValueTf?.text = "\(simpleSaving.futureValue!)"
+                }
+                if simpleSaving.timeInYears != nil{
+                    let timeNumPaymentsTf =  getTextFieldByTag(tag: 4)
+                    let timeInYears = simpleSaving.timeInYears
+                    if yearsToggle.isOn {
+                        timeNumPaymentsTf?.text = "\(timeInYears!)"
+                    } else{
+                        let timeInNumPayments = timeInYears! * compoundsPerYear
+                        timeNumPaymentsTf?.text = "\(timeInNumPayments)"
+                    }
+                }
+                // MARK: load lastCalculatedTfTag of SimpleSavings
+                lastCalculatedTfTag = simpleSaving.lastCalculatedTag
+            } catch {
+                print("Unable to Decode object (\(error))")
+            }
+        }
     }
     
     @IBAction func didYearsToggle(_ sender: UISwitch) {
@@ -139,9 +175,6 @@ class SimpleSavingsController: UIViewController {
 //            print("empty textfield: \(String(describing: textFieldTBC?.tag)) \(String(describing: textFieldTBC?.placeholder))")
             if textFieldTBC?.tag != nil {
                 lastCalculatedTfTag = textFieldTBC!.tag
-                
-                // MARK: save lastCalculatedTfTag to user defaults
-//                defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
             } else {
                 textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!)
             }
@@ -151,26 +184,39 @@ class SimpleSavingsController: UIViewController {
             let interest = Double((getTextFieldByTag(tag: 2)?.text)!)
             let futureValue = Double((getTextFieldByTag(tag: 3)?.text)!)
             let timeNumPayments = Double((getTextFieldByTag(tag: 4)?.text)!)
+            
+            var timeInYears: Double? = nil
+            
+            if timeNumPayments != nil{
+            // convert time to years
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
+            }
+            
+            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+            
+            do {
+                // encode & save object in user defaults
+                let encodedData = try encoder.encode(simpleSaving)
+                defaults.set(encodedData, forKey: "SimpleSaving")
+            } catch {
+                print("Error encoding simple saving, \(error)")
+            }
 
-            let compoundsPerYear = 12.0  // hard code this as a global variable somewhere else?
-
-            print(lastCalculatedTfTag!)
+            let calculatedEstimate: Double
+            
             // calculate & display the missing field
             switch lastCalculatedTfTag {
             case 1:
                 // principle amount
-                let timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
-                let calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears, compoundsPerYear: compoundsPerYear)
+                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: compoundsPerYear)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 2:
                 // interest
-                let timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
-                let calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears, compoundsPerYear: compoundsPerYear)
+                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: compoundsPerYear)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 3:
                 // future value
-                let timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
-                let calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears, compoundsPerYear: compoundsPerYear)
+                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: compoundsPerYear)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 4:
                 // num of payments
@@ -209,8 +255,8 @@ class SimpleSavingsController: UIViewController {
         return textField
     }
     
-    func getTimeInYears(timeNumPayments:Double, compoundsPerYear:Double) -> Double {
-        var timeInYears = 0.0
+    func getTimeInYears(timeNumPayments:Double, compoundsPerYear:Double) -> Double? {
+        var timeInYears: Double?
         if yearsToggle.isOn {
             timeInYears = timeNumPayments
         } else {
@@ -297,3 +343,7 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
 //        }
     }
 }
+
+
+//references: https://cocoacasts.com/ud-5-how-to-store-a-custom-object-in-user-defaults-in-swift
+// https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types

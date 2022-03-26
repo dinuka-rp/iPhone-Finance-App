@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Loan: Codable {
+struct Loan: Codable {
     // Encodable & Decodable - used to save the object in user-defaults
     
     var principleAmount: Double

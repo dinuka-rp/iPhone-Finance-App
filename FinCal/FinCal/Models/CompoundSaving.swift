@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CompoundSaving: Codable {
+struct CompoundSaving: Codable {
     // Encodable & Decodable - used to save the object in user-defaults
     
     var principleAmount: Double

@@ -7,13 +7,13 @@
 
 import Foundation
 
-class SimpleSaving: Codable {
+struct SimpleSaving: Codable {
     // Encodable & Decodable - used to save the object in user-defaults
     
-    var principleAmount: Double
-    var interest: Double
-    var futureValue: Double
-    var timeInYears: Double  // this is always saved as timeInYears (need to check toggle for years, if off - convert and show in number of payments)
+    var presentValue: Double? // A.k.a: principle amount
+    var interest: Double?
+    var futureValue: Double?
+    var timeInYears: Double?  // this is always saved as timeInYears (need to check toggle for years, if off - convert and show in number of payments)
     
-    var lastCalculatedTag: Int
+    var lastCalculatedTag: Int?
 }
