@@ -43,8 +43,11 @@ class SimpleSavingsController: UIViewController {
         let timeNumPaymentsTextField = getTextFieldByTag(tag: 4)
         updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!)
         
-        // load textfield values from user defaults
+        // TODO: load textfield values from user defaults
         
+        
+        // MARK: load lastCalculatedTfTagSimpleSavings
+//        lastCalculatedTfTag = defaults.integer(forKey: "lastCalculatedTfTagSimpleSavings")
     }
     
     @IBAction func didYearsToggle(_ sender: UISwitch) {
@@ -56,14 +59,18 @@ class SimpleSavingsController: UIViewController {
         if isYearsToggleOn {
             if let numOfYears = timeNumPaymentsTextField?.text{
                 // convert & update value if it exists
-                let numOfPayments = (Double(numOfYears) ?? 0) / 12
-                timeNumPaymentsTextField?.text = "\(numOfPayments)"
+                let numOfYears = (Double(numOfYears) ?? 0) / 12
+                
+                // round number off to 2 decimal places
+                timeNumPaymentsTextField?.text = "\(numOfYears.toFixed(2))"
             }
         } else{
             if let numOfYears = timeNumPaymentsTextField?.text{
                 // convert & update value if it exists
                 let numOfPayments = (Double(numOfYears) ?? 0) * 12
-                timeNumPaymentsTextField?.text = "\(numOfPayments)"
+                
+                // show number as integer - show as a rounded decimal (incase there're half payments when converted from years)
+                timeNumPaymentsTextField?.text = "\(numOfPayments.toFixed(2))"
             }
         }
         
@@ -93,18 +100,7 @@ class SimpleSavingsController: UIViewController {
         
         return isSatisfied
     }
-    
-    // TODO: check how to handle this properly
-    /// Check if all fields except two have been filled - to identify whether to allow entering another value to perform a new calculation
-    /// either this needs to be recorded in a queue, better to make the user remove 2 spots and fill up
-    /// - Returns: Bool
-//    func isAllButTwoFilled() -> Bool{
-//        return ( textFields.filter { tf in
-//            // get all textfields that have at least one character filled
-//            return tf.text?.count != 0
-//            }.count == textFields.count - 2 )
-//    }
-    
+
     /// Check if all fields have been filled - to identify whether to autogenerate the result
     /// - Returns: Bool
     func isAllFilled() -> Bool{
@@ -114,64 +110,68 @@ class SimpleSavingsController: UIViewController {
             }.count == textFields.count )
     }
     
+    /// Check whether all conditions are satisfied to autogenerate the result
+    /// - Returns: Bool
+//    func isCalculatable(inputTag: Int) -> Bool{
+//        let isAllButOneFilled  = isAllButOneFilled()
+//        let isAllFilled = isAllFilled()
+//        let isSatisfied = isAllButOneFilled || (isAllFilled && inputTag != lastCalculatedTfTag)
+//
+//        return isSatisfied
+//    }
+
+    
     func changeInput(textField: UITextField) {
         let inputTfTag = textField.tag
-        
-        // check if all textfields have been filled
-        if isAllFilled() {
-            // check if the lastCalculatedField was the one that was updated
-            if inputTfTag == lastCalculatedTfTag {
-                // alert user that at least one field has to be empty to make an estimation
 
-                // return without calculating
-                return
-            } else {
-                // calculate the new estimation & update the value of the lastCalculatedField
-            }
-        }
+        let isAllButOneFilled  = isAllButOneFilled()
+        let isAllFilled = isAllFilled()
+        let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
+
         
-//        FIXME: this logic will run once, then when all the fields get filled, it won't run afterwords - have an or condition to omit the field that was calculated/ estimated.
-//        pass through if the input wasn't given from the already estimated field
-        
-        // check if one textfield is empty
-        let isAllButOneFilled = isAllButOneFilled()
-                
-        if (isAllButOneFilled) {
-            // identify the missing field
-            let unfilledTextField = textFields.filter { tf in
+        // check if it's possible to make a calculation
+        if (isCalculatable) {
+            // identify the missing field/ tf to be calculateed
+            var textFieldTBC = textFields.filter { tf in
                 return tf.text?.count == 0  // can use isEmpty as well
             }.first
 
-            print("empty textfield: \(String(describing: unfilledTextField?.tag)) \(String(describing: unfilledTextField?.placeholder))")
-            if unfilledTextField != nil{
-                lastCalculatedTfTag = unfilledTextField!.tag
+//            print("empty textfield: \(String(describing: textFieldTBC?.tag)) \(String(describing: textFieldTBC?.placeholder))")
+            if textFieldTBC?.tag != nil {
+                lastCalculatedTfTag = textFieldTBC!.tag
+                
+                // MARK: save lastCalculatedTfTag to user defaults
+//                defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
+            } else {
+                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!)
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
             let presentValue = Double((getTextFieldByTag(tag: 1)?.text)!)
             let interest = Double((getTextFieldByTag(tag: 2)?.text)!)
             let futureValue = Double((getTextFieldByTag(tag: 3)?.text)!)
-            let timeNumPayments = Double((getTextFieldByTag(tag: 3)?.text)!)
+            let timeNumPayments = Double((getTextFieldByTag(tag: 4)?.text)!)
 
             let compoundsPerYear = 12.0  // hard code this as a global variable somewhere else?
 
+            print(lastCalculatedTfTag!)
             // calculate & display the missing field
             switch lastCalculatedTfTag {
             case 1:
                 // principle amount
                 let timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
                 let calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears, compoundsPerYear: compoundsPerYear)
-                unfilledTextField?.text = "\(calculatedEstimate)"
+                textFieldTBC?.text = "\(calculatedEstimate)"
             case 2:
                 // interest
                 let timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
                 let calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears, compoundsPerYear: compoundsPerYear)
-                unfilledTextField?.text = "\(calculatedEstimate)"
+                textFieldTBC?.text = "\(calculatedEstimate)"
             case 3:
                 // future value
                 let timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
                 let calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears, compoundsPerYear: compoundsPerYear)
-                unfilledTextField?.text = "\(calculatedEstimate)"
+                textFieldTBC?.text = "\(calculatedEstimate)"
             case 4:
                 // num of payments
                 let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: compoundsPerYear)
@@ -179,17 +179,27 @@ class SimpleSavingsController: UIViewController {
                 // convert this to Integer before displaying
                 if yearsToggle.isOn {
                     let timeEstimationInYearsInt = Int(timeEstimationInYears)
-                    unfilledTextField?.text = "\(timeEstimationInYearsInt)"
+                    textFieldTBC?.text = "\(timeEstimationInYearsInt)"
                 } else {
                     let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * compoundsPerYear)
-                    unfilledTextField?.text = "\(timeEstimationInNumPaymentsInt)"
+                    textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
                 }
             default:
                 return
             }
-
             // highlight UI of textfield with estimated value/ change label font color
+            
+        } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
+            // if the lastCalculatedTf was altered, show that another field has to be deleted, to generate an estimation
+            // TODO: alert user that at least one field has to be empty to make an estimation
+            print("Delete another field to make an estimation. At least one field needs to be empty for an estimation.")
         }
+//     TODO:   else if {
+//            // 2 or more fields empty - reset the lastCalculatedTfTag
+//            lastCalculatedTfTag = nil
+//            // save lastCalculatedTfTag to user defaults
+//            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
+//        }
     }
     
     func getTextFieldByTag(tag: Int) -> UITextField? {
@@ -241,6 +251,7 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
                     }
                     else{
                         tf.text! += "."
+//                        changeInput(textField: tf) // not required since a number needs to be added after the . to have an impact on the  calculation
                     }
                 }
             } else{
@@ -258,6 +269,7 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
             if (tf.text?.count ?? 0) > 0 {
                 //  remove last character
                 tf.text!.removeLast()
+                changeInput(textField: tf)
             }
         }
     }

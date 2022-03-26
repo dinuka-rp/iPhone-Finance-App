@@ -16,5 +16,5 @@ class Loan: Codable {
     var timeInYears: Double  // this is always saved as timeInYears (need to check toggle for years, if off - convert and show in number of payments)
     var monthlyPayment: Double
     
-    var lastUpdatedTag: Int
+    var lastCalculatedTag: Int
 }

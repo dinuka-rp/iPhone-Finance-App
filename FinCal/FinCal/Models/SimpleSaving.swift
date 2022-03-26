@@ -15,5 +15,5 @@ class SimpleSaving: Codable {
     var futureValue: Double
     var timeInYears: Double  // this is always saved as timeInYears (need to check toggle for years, if off - convert and show in number of payments)
     
-    var lastUpdatedTag: Int
+    var lastCalculatedTag: Int
 }
