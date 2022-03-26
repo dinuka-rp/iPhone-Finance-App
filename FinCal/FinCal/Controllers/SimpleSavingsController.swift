@@ -16,10 +16,11 @@ class SimpleSavingsController: UIViewController {
     @IBOutlet weak var yearsToggle: UISwitch!
     
     // TODO: positive/ negative needs to be saved and updated in the keyboard as well?, based on the text in the textfield (+ or - number)
+    // TODO: implement a reset button - to clear all inputs at once
 
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
     
-    let compoundsPerYear = 12.0  // hard code this as a global variable somewhere else?
+    let COMPOUNDS_PER_YEAR = 12.0  // hard code this as a global variable somewhere else?
     var lastCalculatedTfTag:Int?
     
     let defaults = UserDefaults.standard
@@ -27,6 +28,10 @@ class SimpleSavingsController: UIViewController {
 //    TODO: (Extra) check if using a custom plist file will allow us to see all the properties of the dictionary separately
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
+    
+    // user defaults keys
+    let YEARS_TOGGLED_UD_KEY = "YearsToggled"
+    let SIMPLE_SAVINGS_UD_KEY = "SimpleSaving"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +46,7 @@ class SimpleSavingsController: UIViewController {
             textField.inputAccessoryView = UIView()
         }
         
-        let isYearsToggleOn = defaults.bool(forKey: "YearsToggled")
+        let isYearsToggleOn = defaults.bool(forKey: YEARS_TOGGLED_UD_KEY)
         yearsToggle.isOn = isYearsToggleOn
         
         // set label & placeholder of time input based on yearsToggle value loaded from user defaults, if saved
@@ -50,7 +55,7 @@ class SimpleSavingsController: UIViewController {
         
         // load textfield values from user defaults
         // Read/Get Data
-        if let data = UserDefaults.standard.data(forKey: "SimpleSaving") {
+        if let data = UserDefaults.standard.data(forKey: SIMPLE_SAVINGS_UD_KEY) {
             do {
                 // Decode Note
                 let simpleSaving = try decoder.decode(SimpleSaving.self, from: data)
@@ -74,7 +79,7 @@ class SimpleSavingsController: UIViewController {
                     if yearsToggle.isOn {
                         timeNumPaymentsTf?.text = "\(timeInYears!)"
                     } else{
-                        let timeInNumPayments = timeInYears! * compoundsPerYear
+                        let timeInNumPayments = timeInYears! * COMPOUNDS_PER_YEAR
                         timeNumPaymentsTf?.text = "\(timeInNumPayments)"
                     }
                 }
@@ -111,7 +116,7 @@ class SimpleSavingsController: UIViewController {
         }
         
         // save value to user defaults
-        defaults.set(isYearsToggleOn, forKey: "YearsToggled")
+        defaults.set(isYearsToggleOn, forKey: YEARS_TOGGLED_UD_KEY)
     }
     
     /// Update label text, textField text & placeholder text, depending on the toggle
@@ -189,7 +194,7 @@ class SimpleSavingsController: UIViewController {
             
             if timeNumPayments != nil{
             // convert time to years
-                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, compoundsPerYear:compoundsPerYear)
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!)
             }
             
             let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
@@ -197,7 +202,7 @@ class SimpleSavingsController: UIViewController {
             do {
                 // encode & save object in user defaults
                 let encodedData = try encoder.encode(simpleSaving)
-                defaults.set(encodedData, forKey: "SimpleSaving")
+                defaults.set(encodedData, forKey: SIMPLE_SAVINGS_UD_KEY)
             } catch {
                 print("Error encoding simple saving, \(error)")
             }
@@ -208,26 +213,26 @@ class SimpleSavingsController: UIViewController {
             switch lastCalculatedTfTag {
             case 1:
                 // principle amount
-                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: compoundsPerYear)
+                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 2:
                 // interest
-                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: compoundsPerYear)
+                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 3:
                 // future value
-                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: compoundsPerYear)
+                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 4:
                 // num of payments
-                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: compoundsPerYear)
+                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: COMPOUNDS_PER_YEAR)
 
                 // convert this to Integer before displaying
                 if yearsToggle.isOn {
                     let timeEstimationInYearsInt = Int(timeEstimationInYears)
                     textFieldTBC?.text = "\(timeEstimationInYearsInt)"
                 } else {
-                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * compoundsPerYear)
+                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * COMPOUNDS_PER_YEAR)
                     textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
                 }
             default:
@@ -255,17 +260,20 @@ class SimpleSavingsController: UIViewController {
         return textField
     }
     
-    func getTimeInYears(timeNumPayments:Double, compoundsPerYear:Double) -> Double? {
+    func getTimeInYears(timeNumPayments:Double) -> Double? {
         var timeInYears: Double?
         if yearsToggle.isOn {
             timeInYears = timeNumPayments
         } else {
-            timeInYears = timeNumPayments / compoundsPerYear
+            timeInYears = timeNumPayments / COMPOUNDS_PER_YEAR
         }
         
         return timeInYears
     }
 }
+
+// TODO: create a delegate here and implement in in CustomKeyboard
+//      use a function in that delegate to display +/- toggle appropriately in the keyboard, when a textfield is brought into focus - have an IBAction that triggers on focus?
 
 // MARK: Implementation of the CustomKeyboardProtocol methods
 extension SimpleSavingsController: CustomKeyboardProtocol{

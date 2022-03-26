@@ -529,7 +529,7 @@
                             <constraint firstItem="lqP-MR-CcJ" firstAttribute="top" secondItem="vtl-8E-Y5J" secondAttribute="top" constant="28" id="d6D-3S-nOz"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Help" id="GnL-6y-fpI"/>
+                    <tabBarItem key="tabBarItem" title="Help" image="questionmark.circle" catalog="system" id="GnL-6y-fpI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfC-Va-srI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -923,6 +923,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
