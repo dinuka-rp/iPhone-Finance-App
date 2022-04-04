@@ -468,6 +468,9 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Jzv-Fu-h0r">
                                                 <rect key="frame" x="325" y="0.0" width="51" height="31"/>
                                                 <color key="onTintColor" systemColor="systemGreenColor"/>
+                                                <connections>
+                                                    <action selector="didYearsToggle:" destination="pOK-bh-IZd" eventType="valueChanged" id="lzM-Lt-h51"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
@@ -501,6 +504,15 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Loans Mortgage" id="4s2-rJ-6Iy"/>
+                    <connections>
+                        <outlet property="keyboard" destination="vBT-ac-xmb" id="MxF-dx-CqD"/>
+                        <outlet property="timeNumPaymentsLabel" destination="P4t-JC-xGW" id="5nM-lq-r7H"/>
+                        <outlet property="yearsToggle" destination="Jzv-Fu-h0r" id="fhe-Ir-daJ"/>
+                        <outletCollection property="textFields" destination="76H-AM-pDd" collectionClass="NSMutableArray" id="Gad-v0-YDL"/>
+                        <outletCollection property="textFields" destination="NHh-h4-WWd" collectionClass="NSMutableArray" id="bCt-fD-AcU"/>
+                        <outletCollection property="textFields" destination="YfH-BS-zmD" collectionClass="NSMutableArray" id="icI-TM-oYw"/>
+                        <outletCollection property="textFields" destination="yjj-Hb-Qih" collectionClass="NSMutableArray" id="zKU-AU-wlA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eoz-fN-pKl" sceneMemberID="firstResponder"/>
             </objects>

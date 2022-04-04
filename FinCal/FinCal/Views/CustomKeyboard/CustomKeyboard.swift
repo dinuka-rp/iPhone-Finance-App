@@ -12,7 +12,7 @@ protocol CustomKeyboardProtocol {
     func didPressNumber(_ number: String)
     func didPressDecimal()
     func didPressDelete()
-    func didToggleNegative(_ bool: Bool)
+    func didToggleNegative()
 }
 
 class CustomKeyboard: UIView {
@@ -72,22 +72,8 @@ class CustomKeyboard: UIView {
         deligate?.didPressDelete()
     }
     
-    @IBAction func didToggleNegativity(_ sender: UISegmentedControl) {
-//        TODO: get tid of this toggle and have a button instead - easier to manage multiple input textfields
-        
-//        print("Did press Delete")
-        print(sender.selectedSegmentIndex)
-        
-        if sender.selectedSegmentIndex == 1 {
-            // negative value
-            deligate?.didToggleNegative(true)
-            
-    // TODO: change selected tint in UI
-        } else{
-            // positive value
-//            selectedSegmentIndex == 0
-            deligate?.didToggleNegative(false)
-        }
+    @IBAction func didToggleNegativity(_ sender: UIButton) {
+        deligate?.didToggleNegative()
     }
     
 }

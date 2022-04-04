@@ -128,24 +128,24 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0In-B7-1Ei">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                     <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RSF-xE-X0h">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="34.5"/>
-                                            <segments>
-                                                <segment title="+"/>
-                                                <segment title="_"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="didToggleNegativity:" destination="-1" eventType="valueChanged" id="he5-9d-JSc"/>
-                                            </connections>
-                                        </segmentedControl>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5f-Xv-AEn">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="33.5"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="tinted" title="+/-">
+                                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="didToggleNegativity:" destination="-1" eventType="touchUpInside" id="X5o-3S-Ugf"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVb-BP-gCt">
                                             <rect key="frame" x="0.0" y="39.5" width="127.5" height="33"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="tinted" title=".">
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="3t1-jK-Chr"/>
+                                                <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="dzJ-Eq-aVR"/>
                                             </connections>
                                         </button>
                                     </subviews>
