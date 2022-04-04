@@ -16,16 +16,15 @@ class SimpleSavingsController: UIViewController {
     @IBOutlet weak var yearsToggle: UISwitch!
     
     // TODO: positive/ negative needs to be saved and updated in the keyboard as well?, based on the text in the textfield (+ or - number)
-    // TODO: implement a reset button - to clear all inputs at once
+    // TODO: implement a reset button - to clear all input text fields at once
 
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
-    
-    let COMPOUNDS_PER_YEAR = 12.0  // hard code this as a global variable somewhere else?
+
     var lastCalculatedTfTag:Int?
     
     let defaults = UserDefaults.standard
 //    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("FinCal.plist")
-//    TODO: (Extra) check if using a custom plist file will allow us to see all the properties of the dictionary separately
+//    TODO: (Extra) check if using a custom plist file will allow us to see all the properties of the dictionary separately - no advantage from the app's functional pov
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
@@ -79,7 +78,7 @@ class SimpleSavingsController: UIViewController {
                     if yearsToggle.isOn {
                         timeNumPaymentsTf?.text = "\(timeInYears!)"
                     } else{
-                        let timeInNumPayments = timeInYears! * COMPOUNDS_PER_YEAR
+                        let timeInNumPayments = timeInYears! * GlobalConstants.COMPOUNDS_PER_YEAR
                         timeNumPaymentsTf?.text = "\(timeInNumPayments)"
                     }
                 }
@@ -213,26 +212,26 @@ class SimpleSavingsController: UIViewController {
             switch lastCalculatedTfTag {
             case 1:
                 // principle amount
-                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 2:
                 // interest
-                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 3:
                 // future value
-                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
             case 4:
                 // num of payments
-                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
 
                 // convert this to Integer before displaying
                 if yearsToggle.isOn {
                     let timeEstimationInYearsInt = Int(timeEstimationInYears)
                     textFieldTBC?.text = "\(timeEstimationInYearsInt)"
                 } else {
-                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * COMPOUNDS_PER_YEAR)
+                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * GlobalConstants.COMPOUNDS_PER_YEAR)
                     textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
                 }
             default:
@@ -265,7 +264,7 @@ class SimpleSavingsController: UIViewController {
         if yearsToggle.isOn {
             timeInYears = timeNumPayments
         } else {
-            timeInYears = timeNumPayments / COMPOUNDS_PER_YEAR
+            timeInYears = timeNumPayments / GlobalConstants.COMPOUNDS_PER_YEAR
         }
         
         return timeInYears

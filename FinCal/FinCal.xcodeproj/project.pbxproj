@@ -27,7 +27,9 @@
 		9C4B947327DA4CE50004FE67 /* CustomKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B947227DA4CE50004FE67 /* CustomKeyboard.swift */; };
 		9C4B947827DA62B50004FE67 /* CustomKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B947727DA62B50004FE67 /* CustomKeyboard.xib */; };
 		9C4B947A27DA66D70004FE67 /* SimpleSavings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B947927DA66D70004FE67 /* SimpleSavings.swift */; };
-		9CB8A20E27DC8FCF00110A84 /* Compounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A20D27DC8FCF00110A84 /* Compounds.swift */; };
+		9C72CC5A27FAAB7D006EFD5A /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C72CC5927FAAB7D006EFD5A /* GlobalConstants.swift */; };
+		9CB45AA427F4A6FD00F4E14F /* Loans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB45AA327F4A6FD00F4E14F /* Loans.swift */; };
+		9CB8A20E27DC8FCF00110A84 /* CompoundSavings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A20D27DC8FCF00110A84 /* CompoundSavings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +74,9 @@
 		9C4B947227DA4CE50004FE67 /* CustomKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboard.swift; sourceTree = "<group>"; };
 		9C4B947727DA62B50004FE67 /* CustomKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomKeyboard.xib; sourceTree = "<group>"; };
 		9C4B947927DA66D70004FE67 /* SimpleSavings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSavings.swift; sourceTree = "<group>"; };
-		9CB8A20D27DC8FCF00110A84 /* Compounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compounds.swift; sourceTree = "<group>"; };
+		9C72CC5927FAAB7D006EFD5A /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		9CB45AA327F4A6FD00F4E14F /* Loans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loans.swift; sourceTree = "<group>"; };
+		9CB8A20D27DC8FCF00110A84 /* CompoundSavings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompoundSavings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 				9C01FB5327D14D7B001B1EF5 /* Assets.xcassets */,
 				9C01FB5827D14D7B001B1EF5 /* Info.plist */,
 				9C01FB5027D14D7B001B1EF5 /* FinCal.xcdatamodeld */,
+				9C72CC5927FAAB7D006EFD5A /* GlobalConstants.swift */,
 			);
 			path = FinCal;
 			sourceTree = "<group>";
@@ -205,7 +210,8 @@
 			children = (
 				9C4B945C27DA3C130004FE67 /* DoubleExtension.swift */,
 				9C4B947927DA66D70004FE67 /* SimpleSavings.swift */,
-				9CB8A20D27DC8FCF00110A84 /* Compounds.swift */,
+				9CB8A20D27DC8FCF00110A84 /* CompoundSavings.swift */,
+				9CB45AA327F4A6FD00F4E14F /* Loans.swift */,
 			);
 			path = Calculations;
 			sourceTree = "<group>";
@@ -351,19 +357,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CB8A20E27DC8FCF00110A84 /* Compounds.swift in Sources */,
+				9CB8A20E27DC8FCF00110A84 /* CompoundSavings.swift in Sources */,
 				9C01FB5227D14D7B001B1EF5 /* FinCal.xcdatamodeld in Sources */,
 				9C2D379F27E730C80005A6B1 /* CompoundSaving.swift in Sources */,
 				9C2D37A127E731AE0005A6B1 /* Loan.swift in Sources */,
 				9C4B947327DA4CE50004FE67 /* CustomKeyboard.swift in Sources */,
 				9C2D379D27E72EA20005A6B1 /* SimpleSaving.swift in Sources */,
 				9C4B945527D9F2960004FE67 /* CompoundSavingsController.swift in Sources */,
+				9CB45AA427F4A6FD00F4E14F /* Loans.swift in Sources */,
 				9C4B947A27DA66D70004FE67 /* SimpleSavings.swift in Sources */,
 				9C4B945D27DA3C130004FE67 /* DoubleExtension.swift in Sources */,
 				9C01FB4827D14D7B001B1EF5 /* AppDelegate.swift in Sources */,
 				9C4B945127D9F1780004FE67 /* SimpleSavingsController.swift in Sources */,
 				9C01FB4A27D14D7B001B1EF5 /* SceneDelegate.swift in Sources */,
 				9C4B945927DA12D40004FE67 /* HelpController.swift in Sources */,
+				9C72CC5A27FAAB7D006EFD5A /* GlobalConstants.swift in Sources */,
 				9C4B945327D9F1B20004FE67 /* LoanController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

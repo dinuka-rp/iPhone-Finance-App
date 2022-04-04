@@ -12,8 +12,8 @@ struct Loan: Codable {
     
     var principleAmount: Double
     var interest: Double
-    var futureValue: Double
-    var timeInYears: Double  // this is always saved as timeInYears (need to check toggle for years, if off - convert and show in number of payments)
+//    var timeInYears: Double  // this is always saved as timeInYears (need to check toggle for years, if off - convert and show in number of payments)
+    var numOfPayments: Double  // (need to check toggle for years, if on - convert and show in number of payments)
     var monthlyPayment: Double
     
     var lastCalculatedTag: Int
