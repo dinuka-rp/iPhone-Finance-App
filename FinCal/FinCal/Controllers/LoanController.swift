@@ -112,101 +112,191 @@ class LoanController: UIViewController {
         defaults.set(isYearsToggleOn, forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
     }
     
-//    TODO: Update this to match with loan requirement
-//    func changeInput(textField: UITextField) {
-//        let inputTfTag = textField.tag
-//
-//        let isAllButOneFilled  = isAllButOneFilled(textFields: textFields)
-//        let isAllFilled = isAllFilled(textFields: textFields)
-//        let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
-//
-//
-//        // check if it's possible to make a calculation
-//        if (isCalculatable) {
-//            // identify the missing field/ tf to be calculateed
-//            var textFieldTBC = textFields.filter { tf in
-//                return tf.text?.count == 0  // can use isEmpty as well
-//            }.first
-//
-////            print("empty textfield: \(String(describing: textFieldTBC?.tag)) \(String(describing: textFieldTBC?.placeholder))")
-//            if textFieldTBC?.tag != nil {
-//                lastCalculatedTfTag = textFieldTBC!.tag
-//            } else {
-//                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
-//            }
-//
-//            // get all values in textfields and assign to relevant variables, to pass into functions
-//            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-//            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-//            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
-//            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
-//
-//            var timeInYears: Double? = nil
-//
-//            if timeNumPayments != nil{
-//            // convert time to years
-//                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
-//            }
-//
-//            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
-//
-//            do {
-//                // encode & save object in user defaults
-//                let encodedData = try encoder.encode(simpleSaving)
-//                defaults.set(encodedData, forKey: LOAN_UD_KEY)
-//            } catch {
-//                print("Error encoding simple saving, \(error)")
-//            }
-//
-//            let calculatedEstimate: Double
-//
-//            // calculate & display the missing field
-//            switch lastCalculatedTfTag {
-//            case 1:
-//                // principle amount
-//                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
-//                textFieldTBC?.text = "\(calculatedEstimate)"
-//            case 2:
-//                // interest
-//                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
-//                textFieldTBC?.text = "\(calculatedEstimate)"
-//            case 3:
-//                // future value
-//                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
-//                textFieldTBC?.text = "\(calculatedEstimate)"
-//            case 4:
-//                // num of payments
-//                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
-//
-//                // convert this to Integer before displaying
-//                if yearsToggle.isOn {
-//                    let timeEstimationInYearsInt = Int(timeEstimationInYears)
-//                    textFieldTBC?.text = "\(timeEstimationInYearsInt)"
-//                } else {
-//                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * GlobalConstants.COMPOUNDS_PER_YEAR)
-//                    textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
-//                }
-//            default:
-//                return
-//            }
-//            // highlight UI of textfield with estimated value/ change label font color
-//
-//        } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
-//            // if the lastCalculatedTf was altered, show that another field has to be deleted, to generate an estimation
-//            // TODO: alert user that at least one field has to be empty to make an estimation
-//            print("Delete another field to make an estimation. At least one field needs to be empty for an estimation.")
+
+    func changeInput(textField: UITextField) {
+        let inputTfTag = textField.tag
+
+        let isAllButOneFilled  = isAllButOneFilled(textFields: textFields)
+        let isAllFilled = isAllFilled(textFields: textFields)
+        let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
+
+
+        // check if it's possible to make a calculation
+        if (isCalculatable) {
+            // identify the missing field/ tf to be calculateed
+            var textFieldTBC = textFields.filter { tf in
+                return tf.text?.count == 0  // can use isEmpty as well
+            }.first
+
+//            print("empty textfield: \(String(describing: textFieldTBC?.tag)) \(String(describing: textFieldTBC?.placeholder))")
+            if textFieldTBC?.tag != nil {
+                lastCalculatedTfTag = textFieldTBC!.tag
+            } else {
+                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+            }
+
+            // get all values in textfields and assign to relevant variables, to pass into functions
+            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            let monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+
+            var numOfPayments: Double? = nil
+
+            if timeNumPayments != nil{
+                // convert timeNumPayments to num of payments
+                numOfPayments = getTimeInNumOfPayments(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+            }
+
+            let loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
+
+            do {
+                // encode & save object in user defaults
+                let encodedData = try encoder.encode(loan)
+                defaults.set(encodedData, forKey: LOAN_UD_KEY)
+            } catch {
+                print("Error encoding simple saving, \(error)")
+            }
+
+            let calculatedEstimate: Double
+
+            // calculate & display the missing field
+            switch lastCalculatedTfTag {
+            case 1:
+                // principle amount - loan amount
+                calculatedEstimate = estimateLoanPrincpleAmount(interest: interest!, noOfPayments: numOfPayments!, monthlyPayment: monthlyPayment!)
+                textFieldTBC?.text = "\(calculatedEstimate)"
+            case 2:
+                // interest
+                calculatedEstimate = estimateLoanInterest(presentValue: presentValue!, noOfPayments: numOfPayments!, monthlyPayment: monthlyPayment!)
+                textFieldTBC?.text = "\(calculatedEstimate)"
+            case 3:
+                // monthly payment
+                calculatedEstimate = estimateLoanMonthlyPayment(presentValue: presentValue!, interest: interest!, noOfPayments: numOfPayments!)
+                textFieldTBC?.text = "\(calculatedEstimate)"
+            case 4:
+                // num of payments
+                do {
+                    let timeEstimationInNumOfPayments = try estimateLoanNumOfPayments(presentValue: presentValue!, interest: interest!, monthlyPayment: monthlyPayment!)
+
+                // convert this to Integer before displaying
+                if yearsToggle.isOn {
+                    let timeEstimationInYearsInt = Int(Double(timeEstimationInNumOfPayments) / GlobalConstants.COMPOUNDS_PER_YEAR)
+                    textFieldTBC?.text = "\(timeEstimationInYearsInt)"
+                } else {
+                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInNumOfPayments)
+                    textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
+                }
+                } catch{
+                 // TODO: show alert?
+                }
+            default:
+                return
+            }
+            // highlight UI of textfield with estimated value/ change label font color
+
+        } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
+            // if the lastCalculatedTf was altered, show that another field has to be deleted, to generate an estimation
+            // TODO: alert user that at least one field has to be empty to make an estimation
+            print("Delete another field to make an estimation. At least one field needs to be empty for an estimation.")
+        }
+//     TODO:   else if {
+//            // 2 or more fields empty - reset the lastCalculatedTfTag
+//            lastCalculatedTfTag = nil
+//            // save lastCalculatedTfTag to user defaults
+//            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
 //        }
-////     TODO:   else if {
-////            // 2 or more fields empty - reset the lastCalculatedTfTag
-////            lastCalculatedTfTag = nil
-////            // save lastCalculatedTfTag to user defaults
-////            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
-////        }
-//    }
+    }
+    
+    func getTimeInNumOfPayments(timeNumPayments:Double, yearsToggle:UISwitch) -> Double? {
+        var timeInNumOfPayments: Double?
+        if yearsToggle.isOn {
+            timeInNumOfPayments = timeNumPayments * GlobalConstants.COMPOUNDS_PER_YEAR
+        } else {
+            timeInNumOfPayments = timeNumPayments
+        }
+        
+        return timeInNumOfPayments
+    }
 }
 
 
-//TODO: update this with latest after fixing +/- in SimpleSavingsController
-//extension LoanController: CustomKeyboardProtocol{
+// MARK: Implementation of the CustomKeyboardProtocol methods
+extension LoanController: CustomKeyboardProtocol{
+    func didPressNumber(_ number: String) {
+        let textField = textFields.filter { tf in
+            return tf.isFirstResponder
+        }.first
+        
+        if let tf = textField {
+            tf.text! += "\(number)"
+            
+            changeInput(textField: tf)
+        }
+    }
+    
+    func didPressDecimal() {
+        let textField = textFields.filter { tf in
+            return tf.isFirstResponder
+        }.first
+        
+        if let tf = textField {
+            // check if numbers have been entered before the decimal point
+            if (tf.text?.count ?? 0) > 0 {
+                
+                if let tfText = tf.text{
+                    // check if the number is already decimal (if . was added to the text before)
+                    if tfText.contains("."){
+                        return
+                    }
+                    else{
+                        tf.text! += "."
+//                        changeInput(textField: tf) // not required since a number needs to be added after the . to have an impact on the  calculation
+                    }
+                }
+            } else{
+                // alert: a number can't start with a decimal point
+            }
+        }
+    }
+    
+    func didPressDelete() {
+        let textField = textFields.filter { tf in
+            return tf.isFirstResponder
+        }.first
+        
+        if let tf = textField {
+            if (tf.text?.count ?? 0) > 0 {
+                //  remove last character
+                tf.text!.removeLast()
+                changeInput(textField: tf)
+            }
+        }
+    }
+    
+    func didToggleNegative() {
 //
-//}
+////         MARK: This is only needed for compound savings to show money taken out in monthly payments
+//
+//        // check if this textfield can be made negative (only payments going out need a negative value) - only applied for compound savings?
+//        let tfTagsAllowed: [Int] = []
+//
+//        let textField = textFields.filter { tf in
+//            return tf.isFirstResponder
+//        }.first
+//
+//        if let tf = textField {
+//            let tfTag = tf.tag
+//            if tfTagsAllowed.contains(tfTag) {
+//                var tfText: Double = NSString(string: tf.text ?? "0").doubleValue
+//
+//                if tf.text?.first == "-" {
+//                    tfText = abs(tfText)  // make positive
+//                    tf.text! = "\(tfText)"
+//                } else{
+//                    tf.text! = "-\(tfText)"
+//                }
+//            }
+//        }
+    }
+}

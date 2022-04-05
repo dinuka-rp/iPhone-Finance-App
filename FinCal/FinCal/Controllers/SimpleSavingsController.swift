@@ -222,9 +222,6 @@ class SimpleSavingsController: UIViewController {
 
 }
 
-// TODO: create a delegate here and implement in in CustomKeyboard
-//      use a function in that delegate to display +/- toggle appropriately in the keyboard, when a textfield is brought into focus - have an IBAction that triggers on focus?
-
 // MARK: Implementation of the CustomKeyboardProtocol methods
 extension SimpleSavingsController: CustomKeyboardProtocol{
     func didPressNumber(_ number: String) {
@@ -279,29 +276,29 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
     }
     
     func didToggleNegative() {
-        
-//         MARK: This is only needed for compound savings/ loans? to show money taken out
-        
-        // check if this textfield can be made negative (only payments going out need a negative value) - only applied for compound savings?
-        let tfTagsAllowed: [Int] = []
-        
-        let textField = textFields.filter { tf in
-            return tf.isFirstResponder
-        }.first
-        
-        if let tf = textField {
-            let tfTag = tf.tag
-            if tfTagsAllowed.contains(tfTag) {
-                var tfText: Double = NSString(string: tf.text ?? "0").doubleValue
-                
-                if tf.text?.first == "-" {
-                    tfText = abs(tfText)  // make positive
-                    tf.text! = "\(tfText)"
-                } else{
-                    tf.text! = "-\(tfText)"
-                }
-            }
-        }
+//
+////         MARK: This is only needed for compound savings to show money taken out in monthly payments
+//
+//        // check if this textfield can be made negative (only payments going out need a negative value) - only applied for compound savings?
+//        let tfTagsAllowed: [Int] = []
+//
+//        let textField = textFields.filter { tf in
+//            return tf.isFirstResponder
+//        }.first
+//
+//        if let tf = textField {
+//            let tfTag = tf.tag
+//            if tfTagsAllowed.contains(tfTag) {
+//                var tfText: Double = NSString(string: tf.text ?? "0").doubleValue
+//
+//                if tf.text?.first == "-" {
+//                    tfText = abs(tfText)  // make positive
+//                    tf.text! = "\(tfText)"
+//                } else{
+//                    tf.text! = "-\(tfText)"
+//                }
+//            }
+//        }
     }
 }
 

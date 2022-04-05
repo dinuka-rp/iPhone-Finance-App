@@ -11,8 +11,8 @@ import Foundation
 extension UIViewController {
     // MARK: savings with regular monthly contributions
 
-    /// Calculate the estimation of Principle investment amount (Present Value)  for a Loan
-    /// - Returns: Principle Investment value (Present Value): Double
+    /// Calculate the estimation of Principle investment amount (Present Value/ Loan Amount)  for a Loan
+    /// - Returns: Principle Investment value (Present Value/ Loan Amount): Double
     func estimateLoanPrincpleAmount(interest: Double, noOfPayments: Double, monthlyPayment:Double) -> Double {
         let r = interest / 100  // I
         let N = noOfPayments
@@ -58,6 +58,22 @@ extension UIViewController {
         return R.toFixed(2)
     }
     
+    /// Calculate the estimation of monthly payment value,
+    /// - Returns: Monthly Payment: Double
+    func estimateLoanMonthlyPayment(presentValue: Double, interest: Double, noOfPayments: Double) -> Double {
+        let r = (interest / 100.0) / 12
+        let P = presentValue
+        let N = noOfPayments
+        
+        let PMT = (r * P) / (1 - pow(1 + r, -N))
+        
+        return PMT.toFixed(2)
+    }
+    
+    /// To call runtime errors during the calculations
+    enum calculationErr: Error {
+        case runtimeError(String)
+    }
     
     /// Calculate the estimation for the number of payments left in a loan
     /// - Returns: Number of payments: Int
@@ -79,21 +95,5 @@ extension UIViewController {
         let N = (log(k / (k - P)) / log(1 + rM))
         return Int(N)
     }
-    
-    /// Calculate the estimation of monthly payment value,
-    /// - Returns: Monthly Payment: Double
-    func estimateLoanMonthlyPayment(presentValue: Double, interest: Double, noOfPayments: Double) -> Double {
-        let r = (interest / 100.0) / 12
-        let P = presentValue
-        let N = noOfPayments
-        
-        let PMT = (r * P) / (1 - pow(1 + r, -N))
-        
-        return PMT.toFixed(2)
-    }
-    
-    /// To call runtime errors during the calculations
-    enum calculationErr: Error {
-        case runtimeError(String)
-    }
+
 }

@@ -22,6 +22,7 @@ extension UIViewController {
     }
     
     /// <#Description#>
+    /// not used in Loans calculations - this uses num of payments
     /// - Parameter timeNumPayments: <#timeNumPayments description#>
     /// - Returns: <#description#>
     func getTimeInYears(timeNumPayments:Double, yearsToggle:UISwitch) -> Double? {
