@@ -80,7 +80,7 @@ extension UIViewController {
     
     /// Calculate the estimation of monthly payment value, with regular monthly contributions
     /// - Returns: Monthly Payment Value: Double
-    func estimateMonthlyPaymentValueRC(futureValue: Double, presentValue: Double, interest: Double, timeInYears: Double, monthlyPayment: Double, compoundsPerYear: Double) -> Double {
+    func estimateMonthlyPaymentValueRC(futureValue: Double, presentValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
 
         let A = futureValue // FV
         let P = presentValue
