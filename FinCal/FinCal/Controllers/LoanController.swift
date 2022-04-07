@@ -31,6 +31,8 @@ class LoanController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        keyboard.deligate = self
+
         textFields.forEach{textField in
             // prevent default keyboard from opening for all textFields
             textField.inputView = UIView()
@@ -136,9 +138,9 @@ class LoanController: UIViewController {
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
-            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-            let monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            var presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            var interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            var monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
             let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
 
             var numOfPayments: Double? = nil
@@ -148,15 +150,9 @@ class LoanController: UIViewController {
                 numOfPayments = getTimeInNumOfPayments(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
             }
 
-            let loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
+            var loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
 
-            do {
-                // encode & save object in user defaults
-                let encodedData = try encoder.encode(loan)
-                defaults.set(encodedData, forKey: LOAN_UD_KEY)
-            } catch {
-                print("Error encoding simple saving, \(error)")
-            }
+            saveObjInUserDefaults(loan: loan)   // update UserDefaults value
 
             let calculatedEstimate: Double
 
@@ -166,32 +162,40 @@ class LoanController: UIViewController {
                 // principle amount - loan amount
                 calculatedEstimate = estimateLoanPrincpleAmount(interest: interest!, noOfPayments: numOfPayments!, monthlyPayment: monthlyPayment!)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                presentValue = calculatedEstimate
             case 2:
                 // interest
                 calculatedEstimate = estimateLoanInterest(presentValue: presentValue!, noOfPayments: numOfPayments!, monthlyPayment: monthlyPayment!)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                interest = calculatedEstimate
             case 3:
                 // monthly payment
                 calculatedEstimate = estimateLoanMonthlyPayment(presentValue: presentValue!, interest: interest!, noOfPayments: numOfPayments!)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                monthlyPayment = calculatedEstimate
             case 4:
                 // num of payments
                 do {
                     let timeEstimationInNumOfPayments = try estimateLoanNumOfPayments(presentValue: presentValue!, interest: interest!, monthlyPayment: monthlyPayment!)
 
-                // convert this to Integer before displaying
-                if yearsToggle.isOn {
-                    let timeEstimationInYearsInt = Int(Double(timeEstimationInNumOfPayments) / GlobalConstants.COMPOUNDS_PER_YEAR)
-                    textFieldTBC?.text = "\(timeEstimationInYearsInt)"
-                } else {
-                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInNumOfPayments)
-                    textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
-                }
+                    // convert this to Integer before displaying
+                    if yearsToggle.isOn {
+                        let timeEstimationInYearsInt = Int(Double(timeEstimationInNumOfPayments) / GlobalConstants.COMPOUNDS_PER_YEAR)
+                        textFieldTBC?.text = "\(timeEstimationInYearsInt)"
+                    } else {
+                        let timeEstimationInNumPaymentsInt = Int(timeEstimationInNumOfPayments)
+                        textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
+                    }
+                    
+                    numOfPayments = Double(timeEstimationInNumOfPayments)
                 } catch{
                  // TODO: show alert?
                 }
             default:
-                return
+                // save this after calculation in all screens!! The calculated field won't be saved otherwise
+                loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
+
+                saveObjInUserDefaults(loan: loan)   // update UserDefaults value
             }
             // highlight UI of textfield with estimated value/ change label font color
 
@@ -206,6 +210,26 @@ class LoanController: UIViewController {
 //            // save lastCalculatedTfTag to user defaults
 //            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
 //        }
+        else{
+            // update UserDefaults value with whatever that's available
+            
+            // get all values in textfields and assign to relevant variables, to pass into functions
+            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            let monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+
+            var numOfPayments: Double? = nil
+
+            if timeNumPayments != nil{
+                // convert timeNumPayments to num of payments
+                numOfPayments = getTimeInNumOfPayments(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+            }
+
+            let loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
+            
+            saveObjInUserDefaults(loan: loan)   // update UserDefaults value
+        }
     }
     
     func getTimeInNumOfPayments(timeNumPayments:Double, yearsToggle:UISwitch) -> Double? {
@@ -217,6 +241,16 @@ class LoanController: UIViewController {
         }
         
         return timeInNumOfPayments
+    }
+    
+    func saveObjInUserDefaults(loan:Loan) {
+        do {
+            // encode & save object in user defaults
+            let encodedData = try encoder.encode(loan)
+            defaults.set(encodedData, forKey: LOAN_UD_KEY)
+        } catch {
+            print("Error encoding simple saving, \(error)")
+        }
     }
 }
 

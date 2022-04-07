@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NFt-db-Gxd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ebW-g1-OT0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compound Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxJ-T5-MG4">
-                                <rect key="frame" x="20" y="72" width="266" height="36"/>
+                                <rect key="frame" x="20" y="72" width="289" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -170,34 +170,32 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPF-dL-21q" userLabel="Keyboard" customClass="CustomKeyboard" customModule="FinCal" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6U-V2-evl" customClass="CustomKeyboard" customModule="FinCal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="483" width="414" height="330"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="330" id="3Jm-t7-DfZ"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="414" id="Pnz-0T-zb3"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="330" id="eGI-LK-doU"/>
-                                    <constraint firstAttribute="width" constant="414" id="uzc-im-5BL"/>
+                                    <constraint firstAttribute="height" constant="330" id="aLp-nD-cpL"/>
+                                    <constraint firstAttribute="width" constant="414" id="h0U-5p-UwQ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qPF-dL-21q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CcV-rg-ZEm"/>
-                            <constraint firstItem="qPF-dL-21q" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Efc-pq-y4l"/>
                             <constraint firstItem="sxJ-T5-MG4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="28" id="Far-kA-O3P"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sxJ-T5-MG4" secondAttribute="trailing" constant="105" id="Fuj-7W-tKt"/>
                             <constraint firstItem="mvo-zg-Qzs" firstAttribute="top" secondItem="sxJ-T5-MG4" secondAttribute="bottom" constant="31" id="Mfh-Qo-bsC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sxJ-T5-MG4" secondAttribute="trailing" constant="128" id="T03-s5-fkb"/>
-                            <constraint firstItem="qPF-dL-21q" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VUT-yA-AxQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mvo-zg-Qzs" secondAttribute="trailing" constant="20" id="bu6-qJ-O3M"/>
-                            <constraint firstItem="sxJ-T5-MG4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ilf-pv-iLW"/>
+                            <constraint firstItem="k6U-V2-evl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="edd-IM-ARt"/>
+                            <constraint firstItem="sxJ-T5-MG4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ilf-pv-iLW"/>
+                            <constraint firstItem="k6U-V2-evl" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="oBZ-51-NZC"/>
+                            <constraint firstItem="k6U-V2-evl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xfZ-qF-oCn"/>
                             <constraint firstItem="mvo-zg-Qzs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="yzl-8b-ogo"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Compound Savings" id="a3S-Ea-Ti7"/>
                     <connections>
-                        <outlet property="keyboard" destination="qPF-dL-21q" id="tbC-8r-E6G"/>
+                        <outlet property="keyboard" destination="k6U-V2-evl" id="sNV-oy-EVm"/>
                         <outlet property="timeNumPaymentsLabel" destination="1sk-PE-7rb" id="Z7u-vh-XDl"/>
                         <outlet property="yearsToggle" destination="wtt-87-L3e" id="VyY-Br-btb"/>
                         <outletCollection property="textFields" destination="w5w-Zn-QVw" collectionClass="NSMutableArray" id="aVO-55-mKF"/>

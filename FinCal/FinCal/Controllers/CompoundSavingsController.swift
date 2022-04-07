@@ -32,6 +32,8 @@ class CompoundSavingsController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        keyboard.deligate = self
+
         textFields.forEach{textField in
             // prevent default keyboard from opening for all textFields
             textField.inputView = UIView()
@@ -140,10 +142,10 @@ class CompoundSavingsController: UIViewController {
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
-            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            var presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
             let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-            let monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
-            let futureValue = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+            var monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            var futureValue = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
             let timeNumPayments = Double((getTextFieldByTag(tag: 5, textFields: textFields)?.text)!)
 
             var timeInYears: Double? = nil
@@ -153,17 +155,9 @@ class CompoundSavingsController: UIViewController {
                 timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
             }
 
-//            TODO: save this after calculation in all screens!! The calculated field won't be saved otherwise
-//            FIXME: this needs to be handled carefully as changeInput doesn't always mean isCalculatable!!! need to save before isCalculatable and after calculating
-            let compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+            var compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
 
-            do {
-                // encode & save object in user defaults
-                let encodedData = try encoder.encode(compoundSaving)
-                defaults.set(encodedData, forKey: COMPOUND_SAVINGS_UD_KEY)
-            } catch {
-                print("Error encoding simple saving, \(error)")
-            }
+            saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
 
             let calculatedEstimate: Double
 
@@ -173,19 +167,23 @@ class CompoundSavingsController: UIViewController {
                 // principle amount
                 calculatedEstimate = estimatePrincpleAmountRC(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, monthlyPayment: monthlyPayment!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                presentValue = calculatedEstimate
             case 2:
                 // interest
                 // TODO: throw alert?
                 print("Cannot calculate interest?")
 //                textFieldTBC?.text = "\(calculatedEstimate)"
+//                interest = calculatedEstimate
             case 3:
                 // monthly payment
                 calculatedEstimate = estimateMonthlyPaymentValueRC(futureValue: futureValue!, presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                monthlyPayment = calculatedEstimate
             case 4:
                 // future value
                 calculatedEstimate = estimateFutureValueRC(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, monthlyPayment: monthlyPayment!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                futureValue = calculatedEstimate
             case 5:
                 // num of payments
                 let timeEstimationInYears = estimateTimeInYearsRC(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, monthlyPayment: monthlyPayment!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
@@ -198,8 +196,12 @@ class CompoundSavingsController: UIViewController {
                     let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * GlobalConstants.COMPOUNDS_PER_YEAR)
                     textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
                 }
+                timeInYears = timeEstimationInYears
             default:
-                return
+                // save this after calculation in all screens!! The calculated field won't be saved otherwise
+                compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+
+                saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
             }
             // highlight UI of textfield with estimated value/ change label font color
 
@@ -214,8 +216,38 @@ class CompoundSavingsController: UIViewController {
 //            // save lastCalculatedTfTag to user defaults
 //            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
 //        }
+        else{
+            // update UserDefaults value with whatever that's available
+            
+            // get all values in textfields and assign to relevant variables, to pass into functions
+            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            let monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            let futureValue = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+            let timeNumPayments = Double((getTextFieldByTag(tag: 5, textFields: textFields)?.text)!)
+
+            var timeInYears: Double? = nil
+
+            if timeNumPayments != nil{
+            // convert time to years
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+            }
+
+            let compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+
+            saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
+        }
     }
 
+    func saveObjInUserDefaults(compoundSaving: CompoundSaving) {
+        do {
+            // encode & save object in user defaults
+            let encodedData = try encoder.encode(compoundSaving)
+            defaults.set(encodedData, forKey: COMPOUND_SAVINGS_UD_KEY)
+        } catch {
+            print("Error encoding simple saving, \(error)")
+        }
+    }
 }
 
 

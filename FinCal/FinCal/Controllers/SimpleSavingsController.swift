@@ -152,9 +152,9 @@ class SimpleSavingsController: UIViewController {
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
-            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            var presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            var interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            var futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
             let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
             
             var timeInYears: Double? = nil
@@ -166,13 +166,7 @@ class SimpleSavingsController: UIViewController {
             
             let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
             
-            do {
-                // encode & save object in user defaults
-                let encodedData = try encoder.encode(simpleSaving)
-                defaults.set(encodedData, forKey: SIMPLE_SAVINGS_UD_KEY)
-            } catch {
-                print("Error encoding simple saving, \(error)")
-            }
+            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
 
             let calculatedEstimate: Double
             
@@ -182,14 +176,17 @@ class SimpleSavingsController: UIViewController {
                 // principle amount
                 calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                presentValue = calculatedEstimate
             case 2:
                 // interest
                 calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                interest = calculatedEstimate
             case 3:
                 // future value
                 calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                futureValue = calculatedEstimate
             case 4:
                 // num of payments
                 let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
@@ -202,7 +199,12 @@ class SimpleSavingsController: UIViewController {
                     let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * GlobalConstants.COMPOUNDS_PER_YEAR)
                     textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
                 }
+                timeInYears = timeEstimationInYears
             default:
+                // save this after calculation in all screens!! The calculated field won't be saved otherwise
+                let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+                
+                saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
                 return
             }
             // highlight UI of textfield with estimated value/ change label font color
@@ -218,8 +220,37 @@ class SimpleSavingsController: UIViewController {
 //            // save lastCalculatedTfTag to user defaults
 //            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
 //        }
+        else{
+            // update UserDefaults value with whatever that's available
+
+            // get all values in textfields and assign to relevant variables, to pass into functions
+            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+            
+            var timeInYears: Double? = nil
+            
+            if timeNumPayments != nil{
+            // convert time to years
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+            }
+            
+            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+            
+            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
+        }
     }
 
+    func saveObjInUserDefaults(simpleSaving: SimpleSaving) {
+        do {
+            // encode & save object in user defaults
+            let encodedData = try encoder.encode(simpleSaving)
+            defaults.set(encodedData, forKey: SIMPLE_SAVINGS_UD_KEY)
+        } catch {
+            print("Error encoding simple saving, \(error)")
+        }
+    }
 }
 
 // MARK: Implementation of the CustomKeyboardProtocol methods
