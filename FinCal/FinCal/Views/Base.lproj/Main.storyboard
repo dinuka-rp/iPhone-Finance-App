@@ -83,6 +83,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="AA3-cK-ayw"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -103,6 +106,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="7hP-fm-jQz"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -123,6 +129,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="cJp-7v-9So"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -143,6 +152,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="x5o-QW-t3t"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -163,6 +175,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="yO2-Bu-6p9"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -196,7 +211,11 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <gestureRecognizers/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="15" bottom="8" trailing="15"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="OVu-Zc-aVa" appends="YES" id="F1a-i9-NPk"/>
+                                        </connections>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -225,6 +244,7 @@
                     <tabBarItem key="tabBarItem" title="Compound Savings" id="a3S-Ea-Ti7"/>
                     <connections>
                         <outlet property="keyboard" destination="k6U-V2-evl" id="sNV-oy-EVm"/>
+                        <outlet property="keyboardBottomConstraint" destination="oBZ-51-NZC" id="8Id-7A-BvJ"/>
                         <outlet property="timeNumPaymentsLabel" destination="1sk-PE-7rb" id="Z7u-vh-XDl"/>
                         <outlet property="yearsToggle" destination="wtt-87-L3e" id="VyY-Br-btb"/>
                         <outletCollection property="textFields" destination="sp3-sE-2Ra" collectionClass="NSMutableArray" id="Z0L-3b-cUT"/>
@@ -235,6 +255,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="OVu-Zc-aVa">
+                    <connections>
+                        <action selector="didTouchOutsideTextField:" destination="BYZ-38-t0r" id="IG7-OK-Tc8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1117.3913043478262" y="900"/>
         </scene>
@@ -281,6 +306,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="AaZ-Hr-tbA"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -301,6 +329,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="editingDidEnd" id="56S-d9-ZSu"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -321,8 +352,12 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="editingDidEnd" id="vn0-cu-LzS"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="kjP-wL-zb6" firstAttribute="leading" secondItem="m4K-8a-nnc" secondAttribute="leading" id="QQv-m7-ePE"/>
                                                     <constraint firstAttribute="trailing" secondItem="kjP-wL-zb6" secondAttribute="trailing" id="WKl-Et-iLX"/>
@@ -341,6 +376,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="editingDidEnd" id="52f-8T-m0q"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -375,6 +413,9 @@
                                             </stackView>
                                         </subviews>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="15" bottom="10" trailing="15"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="ivE-xc-Cvn" appends="YES" id="pHt-JO-Tfc"/>
+                                        </connections>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -403,6 +444,7 @@
                     <tabBarItem key="tabBarItem" title="Simple Savings" id="YGm-4X-Q6x"/>
                     <connections>
                         <outlet property="keyboard" destination="eiY-c6-h95" id="WUB-dw-hc8"/>
+                        <outlet property="keyboardBottomConstraint" destination="6Bf-LY-1FV" id="Dxw-fw-4v3"/>
                         <outlet property="timeNumPaymentsLabel" destination="iZc-rO-dDf" id="eKF-25-glS"/>
                         <outlet property="yearsToggle" destination="d0j-w2-Wmg" id="4zo-HF-M3b"/>
                         <outletCollection property="textFields" destination="kjP-wL-zb6" collectionClass="NSMutableArray" id="H8m-tW-d2w"/>
@@ -412,6 +454,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HwK-RA-ofy" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ivE-xc-Cvn">
+                    <connections>
+                        <action selector="didTouchOutsideTextField:" destination="NFt-db-Gxd" id="uC4-pq-mEC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-246.37681159420291" y="900"/>
         </scene>
@@ -427,8 +474,6 @@
                                 <rect key="frame" x="0.0" y="483" width="414" height="330"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="330" id="DBR-55-ymx"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="414" id="F7R-b8-U8r"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="330" id="edf-6k-lnP"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="414" id="gB1-O2-kfR"/>
                                     <constraint firstAttribute="height" constant="330" id="jXu-UZ-z6Z"/>
@@ -460,6 +505,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="editingDidEnd" id="UKi-Ee-A61"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -480,6 +528,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="editingDidEnd" id="Jsy-Lm-4MD"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -500,6 +551,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="editingDidEnd" id="u5O-wQ-agh"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -520,6 +574,9 @@
                                                         <rect key="frame" x="0.0" y="28.5" width="384" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="editingDidEnd" id="MiB-uP-DVt"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -553,7 +610,11 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <gestureRecognizers/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="15" bottom="10" trailing="15"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="umj-3C-4Qb" appends="YES" id="sPx-pu-Tfr"/>
+                                        </connections>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -574,14 +635,15 @@
                             <constraint firstItem="YUg-BW-bWK" firstAttribute="bottom" secondItem="vBT-ac-xmb" secondAttribute="top" id="RFn-cy-LWD"/>
                             <constraint firstItem="YUg-BW-bWK" firstAttribute="trailing" secondItem="lVt-f1-QBd" secondAttribute="trailing" id="RSY-Ld-GKN"/>
                             <constraint firstItem="YUg-BW-bWK" firstAttribute="leading" secondItem="lVt-f1-QBd" secondAttribute="leading" id="Y8d-Ft-Pfz"/>
-                            <constraint firstItem="lVt-f1-QBd" firstAttribute="bottom" secondItem="vBT-ac-xmb" secondAttribute="bottom" id="cut-Fk-6Z9"/>
                             <constraint firstItem="vBT-ac-xmb" firstAttribute="trailing" secondItem="lVt-f1-QBd" secondAttribute="trailing" id="hLr-OD-OpC"/>
+                            <constraint firstItem="vBT-ac-xmb" firstAttribute="bottom" secondItem="lVt-f1-QBd" secondAttribute="bottom" id="kqc-qs-yAv"/>
                             <constraint firstItem="YUg-BW-bWK" firstAttribute="top" secondItem="lVt-f1-QBd" secondAttribute="top" id="rxI-Q8-UZy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Loans Mortgage" id="4s2-rJ-6Iy"/>
                     <connections>
                         <outlet property="keyboard" destination="vBT-ac-xmb" id="MxF-dx-CqD"/>
+                        <outlet property="keyboardBottomConstraint" destination="kqc-qs-yAv" id="PSx-d0-Ghd"/>
                         <outlet property="timeNumPaymentsLabel" destination="P4t-JC-xGW" id="5nM-lq-r7H"/>
                         <outlet property="yearsToggle" destination="Jzv-Fu-h0r" id="fhe-Ir-daJ"/>
                         <outletCollection property="textFields" destination="76H-AM-pDd" collectionClass="NSMutableArray" id="Gad-v0-YDL"/>
@@ -591,6 +653,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eoz-fN-pKl" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="umj-3C-4Qb">
+                    <connections>
+                        <action selector="didTouchOutsideTextField:" destination="pOK-bh-IZd" id="Bb4-fS-P1M"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="586.95652173913049" y="900"/>
         </scene>

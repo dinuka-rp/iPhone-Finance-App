@@ -10,13 +10,12 @@ import UIKit
 class SimpleSavingsController: UIViewController {
     @IBOutlet weak var keyboard: CustomKeyboard!
     
+    @IBOutlet weak var keyboardBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet var textFields: [UITextField]!
     
     //     check the value of this when calling functions, to determine what to display
     @IBOutlet weak var yearsToggle: UISwitch!
-    
-    // TODO: positive/ negative needs to be saved and updated in the keyboard as well?, based on the text in the textfield (+ or - number)
-    // TODO: implement a reset button - to clear all input text fields at once
 
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
 
@@ -43,6 +42,8 @@ class SimpleSavingsController: UIViewController {
             textField.inputView = UIView()
             textField.inputAccessoryView = UIView()
         }
+        
+//        hideKeyboard(nil)  // make room to display all inputs when screen loads
         
         let isYearsToggleOn = defaults.bool(forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
         yearsToggle.isOn = isYearsToggleOn
@@ -87,6 +88,15 @@ class SimpleSavingsController: UIViewController {
                 print("Unable to Decode object (\(error))")
             }
         }
+    }
+    
+    @IBAction func didTouchTextField(_ sender: UITextField) {
+//        print("\(sender.tag) touched")
+        showKeyboard()
+    }
+
+    @IBAction func didTouchOutsideTextField(_ sender: UITapGestureRecognizer) {
+        hideKeyboard(nil)
     }
     
     @IBAction func didYearsToggle(_ sender: UISwitch) {
@@ -341,7 +351,31 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
     }
     
     // MARK: show/ hide keyboard
+    private func showKeyboard() {
+         self.keyboard.isHidden = false
+         keyboardBottomConstraint.constant = 0
+         UIView.animate(
+             withDuration: 0.3,
+             delay: 0,
+             options: [.curveEaseInOut]) {
+                 self.view.layoutIfNeeded()
+                 self.keyboard.alpha = 1
+             }
+     }
 
+     private func hideKeyboard(_ sender: UITextField?) {
+         keyboardBottomConstraint.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
+         UIView.animate(
+             withDuration: 0.3,
+             delay: 0,
+             options: [.curveEaseInOut]) {
+                 self.view.layoutIfNeeded()
+                 self.keyboard.alpha = 0
+             } completion: { _ in
+                 self.keyboard.isHidden = true
+                 sender?.resignFirstResponder()
+             }
+     }
 }
 
 

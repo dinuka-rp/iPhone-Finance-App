@@ -9,7 +9,9 @@ import UIKit
 
 class LoanController: UIViewController {
     @IBOutlet weak var keyboard: CustomKeyboard!
-    
+
+    @IBOutlet weak var keyboardBottomConstraint: NSLayoutConstraint!
+
     @IBOutlet var textFields: [UITextField]!
     
     //     check the value of this when calling functions, to determine what to display
@@ -85,7 +87,17 @@ class LoanController: UIViewController {
         }
     }
     
-//    redundant across 3 screens
+    //    redundant across 3 screens - required because IBActions
+        
+    @IBAction func didTouchTextField(_ sender: UITextField) {
+//        print("\(sender.tag) touched")
+        showKeyboard()
+    }
+    
+    @IBAction func didTouchOutsideTextField(_ sender: UITapGestureRecognizer) {
+        hideKeyboard(nil)
+    }
+    
     @IBAction func didYearsToggle(_ sender: UISwitch) {
         let isYearsToggleOn = sender.isOn
         
@@ -342,4 +354,31 @@ extension LoanController: CustomKeyboardProtocol{
 //            }
 //        }
     }
+    
+    // MARK: show/ hide keyboard
+    private func showKeyboard() {
+         self.keyboard.isHidden = false
+         keyboardBottomConstraint.constant = 0
+         UIView.animate(
+             withDuration: 0.3,
+             delay: 0,
+             options: [.curveEaseInOut]) {
+                 self.view.layoutIfNeeded()
+                 self.keyboard.alpha = 1
+             }
+     }
+
+     private func hideKeyboard(_ sender: UITextField?) {
+         keyboardBottomConstraint.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
+         UIView.animate(
+             withDuration: 0.3,
+             delay: 0,
+             options: [.curveEaseInOut]) {
+                 self.view.layoutIfNeeded()
+                 self.keyboard.alpha = 0
+             } completion: { _ in
+                 self.keyboard.isHidden = true
+                 sender?.resignFirstResponder()
+             }
+     }
 }
