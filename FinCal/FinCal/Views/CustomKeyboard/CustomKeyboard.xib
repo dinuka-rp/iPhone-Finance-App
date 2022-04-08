@@ -22,9 +22,12 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-xL-Vvj">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="1">
+                                    <buttonConfiguration key="configuration" style="tinted" title="1" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="ydF-Qc-iCF"/>
@@ -32,9 +35,12 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQz-VG-iJv">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="2">
+                                    <buttonConfiguration key="configuration" style="tinted" title="2" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="5Ft-nH-Sin"/>
@@ -42,9 +48,12 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmP-jG-OTk">
                                     <rect key="frame" x="270.5" y="0.0" width="127.5" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="3">
+                                    <buttonConfiguration key="configuration" style="tinted" title="3" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="xE8-Go-B8C"/>
@@ -57,9 +66,12 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbX-2A-ZRU">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="4">
+                                    <buttonConfiguration key="configuration" style="tinted" title="4" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="YWn-Oz-Uka"/>
@@ -67,9 +79,12 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0a9-pY-cSu">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="5">
+                                    <buttonConfiguration key="configuration" style="tinted" title="5" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="dE1-2R-odY"/>
@@ -77,9 +92,12 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPE-85-wYg">
                                     <rect key="frame" x="270.5" y="0.0" width="127.5" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="6">
+                                    <buttonConfiguration key="configuration" style="tinted" title="6" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="Y90-Ji-J1t"/>
@@ -92,9 +110,12 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJq-jB-Twi">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="7">
+                                    <buttonConfiguration key="configuration" style="tinted" title="7" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="XkA-WQ-2ll"/>
@@ -102,9 +123,12 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ka-xy-i2h">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="8">
+                                    <buttonConfiguration key="configuration" style="tinted" title="8" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="XKz-g5-PSh"/>
@@ -112,9 +136,12 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozI-TJ-hLb">
                                     <rect key="frame" x="270.5" y="0.0" width="127.5" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="9">
+                                    <buttonConfiguration key="configuration" style="tinted" title="9" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="sKf-xy-uVM"/>
@@ -128,33 +155,42 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0In-B7-1Ei">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                     <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RSF-xE-X0h">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="34.5"/>
-                                            <segments>
-                                                <segment title="+"/>
-                                                <segment title="_"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="didToggleNegativity:" destination="-1" eventType="valueChanged" id="he5-9d-JSc"/>
-                                            </connections>
-                                        </segmentedControl>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5f-Xv-AEn">
-                                            <rect key="frame" x="0.0" y="39.5" width="127.5" height="33"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="33.5"/>
+                                            <color key="tintColor" systemColor="systemGrayColor"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" title=".">
+                                            <buttonConfiguration key="configuration" style="tinted" title="+/-" cornerStyle="capsule">
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                                <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                                <color key="baseBackgroundColor" systemColor="systemGrayColor"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="3t1-jK-Chr"/>
+                                                <action selector="didToggleNegativity:" destination="-1" eventType="touchUpInside" id="X5o-3S-Ugf"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVb-BP-gCt">
+                                            <rect key="frame" x="0.0" y="39.5" width="127.5" height="33"/>
+                                            <color key="tintColor" systemColor="systemGrayColor"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="tinted" title="." cornerStyle="capsule">
+                                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                                <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                                <color key="baseBackgroundColor" systemColor="systemGrayColor"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="didPressDecimal:" destination="-1" eventType="touchUpInside" id="dzJ-Eq-aVR"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soo-y2-urv">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
+                                    <color key="tintColor" systemColor="systemPurpleColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="0">
+                                    <buttonConfiguration key="configuration" style="tinted" title="0" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didPressNumber:" destination="-1" eventType="touchUpInside" id="LyX-D5-Udq"/>
@@ -165,8 +201,12 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nph-WG-g0Z">
                                             <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
+                                            <color key="tintColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="0.60329573675496684" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" image="delete.left.fill" catalog="system" title=""/>
+                                            <buttonConfiguration key="configuration" style="tinted" image="delete.left.fill" catalog="system" title="" cornerStyle="capsule">
+                                                <color key="baseForegroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.60329573680000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="baseBackgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.60329573680000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </buttonConfiguration>
                                             <connections>
                                                 <action selector="didPressDelete:" destination="-1" eventType="touchUpInside" id="O3S-R9-Lf4"/>
                                             </connections>
@@ -194,6 +234,15 @@
         <image name="delete.left.fill" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

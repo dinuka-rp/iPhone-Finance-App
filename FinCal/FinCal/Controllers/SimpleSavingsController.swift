@@ -10,27 +10,26 @@ import UIKit
 class SimpleSavingsController: UIViewController {
     @IBOutlet weak var keyboard: CustomKeyboard!
     
+    @IBOutlet weak var keyboardBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet var textFields: [UITextField]!
     
     //     check the value of this when calling functions, to determine what to display
     @IBOutlet weak var yearsToggle: UISwitch!
-    
-    // TODO: positive/ negative needs to be saved and updated in the keyboard as well?, based on the text in the textfield (+ or - number)
-    // TODO: implement a reset button - to clear all inputs at once
 
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
-    
-    let COMPOUNDS_PER_YEAR = 12.0  // hard code this as a global variable somewhere else?
+
+    @IBOutlet weak var clearAllButton: UIButton!
+
     var lastCalculatedTfTag:Int?
     
     let defaults = UserDefaults.standard
 //    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("FinCal.plist")
-//    TODO: (Extra) check if using a custom plist file will allow us to see all the properties of the dictionary separately
+//    TODO: (Extra) check if using a custom plist file will allow us to see all the properties of the dictionary separately - no advantage from the app's functional pov
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
     // user defaults keys
-    let YEARS_TOGGLED_UD_KEY = "YearsToggled"
     let SIMPLE_SAVINGS_UD_KEY = "SimpleSaving"
 
     override func viewDidLoad() {
@@ -46,12 +45,14 @@ class SimpleSavingsController: UIViewController {
             textField.inputAccessoryView = UIView()
         }
         
-        let isYearsToggleOn = defaults.bool(forKey: YEARS_TOGGLED_UD_KEY)
+//        hideKeyboard(nil)  // make room to display all inputs when screen loads
+        
+        let isYearsToggleOn = defaults.bool(forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
         yearsToggle.isOn = isYearsToggleOn
         
         // set label & placeholder of time input based on yearsToggle value loaded from user defaults, if saved
-        let timeNumPaymentsTextField = getTextFieldByTag(tag: 4)
-        updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!)
+        let timeNumPaymentsTextField = getTextFieldByTag(tag: 4, textFields: textFields)
+        updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!, timeNumPaymentsLabel: timeNumPaymentsLabel)
         
         // load textfield values from user defaults
         // Read/Get Data
@@ -62,24 +63,24 @@ class SimpleSavingsController: UIViewController {
 
                 // display values in respective text fields
                 if simpleSaving.presentValue != nil{
-                    let presentValueTf =  getTextFieldByTag(tag: 1)
+                    let presentValueTf =  getTextFieldByTag(tag: 1, textFields: textFields)
                     presentValueTf?.text = "\(simpleSaving.presentValue!)"
                 }
                 if simpleSaving.interest != nil{
-                    let interestTf =  getTextFieldByTag(tag: 2)
+                    let interestTf =  getTextFieldByTag(tag: 2, textFields: textFields)
                     interestTf?.text = "\(simpleSaving.interest!)"
                 }
                 if simpleSaving.futureValue != nil{
-                    let futureValueTf =  getTextFieldByTag(tag: 3)
+                    let futureValueTf =  getTextFieldByTag(tag: 3, textFields: textFields)
                     futureValueTf?.text = "\(simpleSaving.futureValue!)"
                 }
                 if simpleSaving.timeInYears != nil{
-                    let timeNumPaymentsTf =  getTextFieldByTag(tag: 4)
+                    let timeNumPaymentsTf =  getTextFieldByTag(tag: 4, textFields: textFields)
                     let timeInYears = simpleSaving.timeInYears
                     if yearsToggle.isOn {
                         timeNumPaymentsTf?.text = "\(timeInYears!)"
                     } else{
-                        let timeInNumPayments = timeInYears! * COMPOUNDS_PER_YEAR
+                        let timeInNumPayments = timeInYears! * GlobalConstants.COMPOUNDS_PER_YEAR
                         timeNumPaymentsTf?.text = "\(timeInNumPayments)"
                     }
                 }
@@ -91,11 +92,25 @@ class SimpleSavingsController: UIViewController {
         }
     }
     
+    @IBAction func didTouchTextField(_ sender: UITextField) {
+//        print("\(sender.tag) touched")
+        showKeyboard()
+    }
+
+    @IBAction func didTouchOutsideTextField(_ sender: UITapGestureRecognizer) {
+        // get active textfield - to remove first responder when hiding keyboard
+        let textField = textFields.filter { tf in
+            return tf.isFirstResponder
+        }.first
+        
+        hideKeyboard(textField)
+    }
+    
     @IBAction func didYearsToggle(_ sender: UISwitch) {
         let isYearsToggleOn = sender.isOn
         
-        let timeNumPaymentsTextField = getTextFieldByTag(tag: 4)
-        updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!)
+        let timeNumPaymentsTextField = getTextFieldByTag(tag: 4, textFields: textFields)
+        updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!, timeNumPaymentsLabel: timeNumPaymentsLabel)
         
         if isYearsToggleOn {
             if let numOfYears = timeNumPaymentsTextField?.text{
@@ -116,40 +131,9 @@ class SimpleSavingsController: UIViewController {
         }
         
         // save value to user defaults
-        defaults.set(isYearsToggleOn, forKey: YEARS_TOGGLED_UD_KEY)
-    }
-    
-    /// Update label text, textField text & placeholder text, depending on the toggle
-    func updateUIForYearsToggle(isYearsToggleOn: Bool, textField: UITextField){
-        // if show years on
-        if isYearsToggleOn {
-            timeNumPaymentsLabel.text = "Number of Years"
-            textField.placeholder = "Number of Years"
-        } else{
-            timeNumPaymentsLabel.text = "Number of Payments"
-            textField.placeholder = "Number of Payments"
-        }
-    }
-    
-    /// Check if all fields except one have been filled - to identify whether to autogenerate the result
-    /// - Returns: Bool
-    func isAllButOneFilled() -> Bool{
-        let isSatisfied = textFields.filter { tf in
-            // get all textfields that have at least one character filled
-            return (tf.text?.isEmpty)!
-            }.count == 1
-        
-        return isSatisfied
+        defaults.set(isYearsToggleOn, forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
     }
 
-    /// Check if all fields have been filled - to identify whether to autogenerate the result
-    /// - Returns: Bool
-    func isAllFilled() -> Bool{
-        return ( textFields.filter { tf in
-            // get all textfields that have at least one character filled
-            return tf.text?.count != 0
-            }.count == textFields.count )
-    }
     
     /// Check whether all conditions are satisfied to autogenerate the result
     /// - Returns: Bool
@@ -161,12 +145,30 @@ class SimpleSavingsController: UIViewController {
 //        return isSatisfied
 //    }
 
+    @IBAction func clearAllTextFields(_ sender: UIButton) {
+        textFields.forEach{textField in
+           // clear each textField
+            textField.text = ""
+        }
+        
+        let simpleSaving = SimpleSaving(presentValue: nil, interest: nil, futureValue: nil, timeInYears: nil, lastCalculatedTag: nil)
+        
+        saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
+        
+        // hide clear all button
+        clearAllButton.isHidden = true
+    }
+    
     
     func changeInput(textField: UITextField) {
         let inputTfTag = textField.tag
-
-        let isAllButOneFilled  = isAllButOneFilled()
-        let isAllFilled = isAllFilled()
+        
+        if clearAllButton.isHidden {
+            clearAllButton.isHidden = false // show clear btn
+        }
+        
+        let isAllButOneFilled  = isAllButOneFilled(textFields: textFields)
+        let isAllFilled = isAllFilled(textFields: textFields)
         let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
 
         
@@ -181,31 +183,25 @@ class SimpleSavingsController: UIViewController {
             if textFieldTBC?.tag != nil {
                 lastCalculatedTfTag = textFieldTBC!.tag
             } else {
-                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!)
+                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
-            let presentValue = Double((getTextFieldByTag(tag: 1)?.text)!)
-            let interest = Double((getTextFieldByTag(tag: 2)?.text)!)
-            let futureValue = Double((getTextFieldByTag(tag: 3)?.text)!)
-            let timeNumPayments = Double((getTextFieldByTag(tag: 4)?.text)!)
+            var presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+            var interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            var futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
             
             var timeInYears: Double? = nil
             
             if timeNumPayments != nil{
             // convert time to years
-                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!)
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
             }
             
-            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+            var simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
             
-            do {
-                // encode & save object in user defaults
-                let encodedData = try encoder.encode(simpleSaving)
-                defaults.set(encodedData, forKey: SIMPLE_SAVINGS_UD_KEY)
-            } catch {
-                print("Error encoding simple saving, \(error)")
-            }
+            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
 
             let calculatedEstimate: Double
             
@@ -213,31 +209,41 @@ class SimpleSavingsController: UIViewController {
             switch lastCalculatedTfTag {
             case 1:
                 // principle amount
-                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                calculatedEstimate = estimatePrincpleAmountFS(futureValue: futureValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                presentValue = calculatedEstimate
             case 2:
                 // interest
-                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                calculatedEstimate = estimateInterestFS(presentValue: presentValue!, futureValue: futureValue!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                interest = calculatedEstimate
             case 3:
                 // future value
-                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                calculatedEstimate = estimateFutureValueFS(presentValue: presentValue!, interest: interest!, timeInYears: timeInYears!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
                 textFieldTBC?.text = "\(calculatedEstimate)"
+                futureValue = calculatedEstimate
             case 4:
                 // num of payments
-                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: COMPOUNDS_PER_YEAR)
+                let timeEstimationInYears = estimateTimeInYearsFS(presentValue: presentValue!, interest: interest!, futureValue: futureValue!, compoundsPerYear: GlobalConstants.COMPOUNDS_PER_YEAR)
 
                 // convert this to Integer before displaying
                 if yearsToggle.isOn {
                     let timeEstimationInYearsInt = Int(timeEstimationInYears)
                     textFieldTBC?.text = "\(timeEstimationInYearsInt)"
                 } else {
-                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * COMPOUNDS_PER_YEAR)
+                    let timeEstimationInNumPaymentsInt = Int(timeEstimationInYears * GlobalConstants.COMPOUNDS_PER_YEAR)
                     textFieldTBC?.text = "\(timeEstimationInNumPaymentsInt)"
                 }
+                timeInYears = timeEstimationInYears
             default:
                 return
             }
+            
+            // save this after calculation in all screens!! The calculated field won't be saved otherwise
+            simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+            
+            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
+            
             // highlight UI of textfield with estimated value/ change label font color
             
         } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
@@ -251,29 +257,40 @@ class SimpleSavingsController: UIViewController {
 //            // save lastCalculatedTfTag to user defaults
 //            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
 //        }
-    }
-    
-    func getTextFieldByTag(tag: Int) -> UITextField? {
-        let textField = textFields.filter { tf in
-            return tf.tag == tag
-        }.first
-        return textField
-    }
-    
-    func getTimeInYears(timeNumPayments:Double) -> Double? {
-        var timeInYears: Double?
-        if yearsToggle.isOn {
-            timeInYears = timeNumPayments
-        } else {
-            timeInYears = timeNumPayments / COMPOUNDS_PER_YEAR
+        else{
+            // update UserDefaults value with whatever that's available
+            //            FIXME: this is a problem - JSONEncoder error if nil values are there?
+            //        debugDescription: "Unable to encode Double.nan directly in JSON. Use JSONEncoder.NonConformingFloatEncodingStrategy.convertToString to specify how the value should be encoded.", underlyingError: nil))
+
+//            // get all values in textfields and assign to relevant variables, to pass into functions
+//            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+//            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+//            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+//            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+//
+//            var timeInYears: Double? = nil
+//
+//            if timeNumPayments != nil{
+//            // convert time to years
+//                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+//            }
+//
+//            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+//
+//            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
         }
-        
-        return timeInYears
+    }
+
+    func saveObjInUserDefaults(simpleSaving: SimpleSaving) {
+        do {
+            // encode & save object in user defaults
+            let encodedData = try encoder.encode(simpleSaving)
+            defaults.set(encodedData, forKey: SIMPLE_SAVINGS_UD_KEY)
+        } catch {
+            print("Error encoding simple saving, \(error)")
+        }
     }
 }
-
-// TODO: create a delegate here and implement in in CustomKeyboard
-//      use a function in that delegate to display +/- toggle appropriately in the keyboard, when a textfield is brought into focus - have an IBAction that triggers on focus?
 
 // MARK: Implementation of the CustomKeyboardProtocol methods
 extension SimpleSavingsController: CustomKeyboardProtocol{
@@ -320,36 +337,72 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
         }.first
         
         if let tf = textField {
-            if (tf.text?.count ?? 0) > 0 {
+            var tfCharCount = tf.text?.count ?? 0
+            if (tfCharCount) > 0 {
                 //  remove last character
                 tf.text!.removeLast()
-                changeInput(textField: tf)
+                tfCharCount -= 1
+                
+                // run this only if the input field has any numbers
+                if tfCharCount > 0 {
+                    changeInput(textField: tf)
+                }
             }
         }
     }
     
-    func didToggleNegative(_ bool: Bool) {
-        
-//         MARK: This is only needed for compound savings/ loans? to show money taken out
-        
-        // TODO: check if this textfield can be made negative (only payments going out need a negative value)
-        
-        
-//        if bool{
-//            let textField = textFields.filter { tf in
-//                return tf.isFirstResponder
-//            }.first
+    func didToggleNegative() {
 //
-//            if let tf = textField {
-//                if (tf.text?.count ?? 0) > 0 {
-//                    tf.text = "-\(tf.text ?? "0")"
+////         MARK: This is only needed for compound savings to show money taken out in monthly payments
+//
+//        // check if this textfield can be made negative (only payments going out need a negative value) - only applied for compound savings?
+//        let tfTagsAllowed: [Int] = []
+//
+//        let textField = textFields.filter { tf in
+//            return tf.isFirstResponder
+//        }.first
+//
+//        if let tf = textField {
+//            let tfTag = tf.tag
+//            if tfTagsAllowed.contains(tfTag) {
+//                var tfText: Double = NSString(string: tf.text ?? "0").doubleValue
+//
+//                if tf.text?.first == "-" {
+//                    tfText = abs(tfText)  // make positive
+//                    tf.text! = "\(tfText)"
+//                } else{
+//                    tf.text! = "-\(tfText)"
 //                }
 //            }
-//
-//        } else{
-////            make it positive, if it's already negative
 //        }
     }
+    
+    // MARK: show/ hide keyboard
+    private func showKeyboard() {
+         self.keyboard.isHidden = false
+         keyboardBottomConstraint.constant = 0
+         UIView.animate(
+             withDuration: 0.3,
+             delay: 0,
+             options: [.curveEaseInOut]) {
+                 self.view.layoutIfNeeded()
+                 self.keyboard.alpha = 1
+             }
+     }
+
+     private func hideKeyboard(_ sender: UITextField?) {
+         keyboardBottomConstraint.constant = keyboard.bounds.height + self.view.safeAreaInsets.bottom
+         UIView.animate(
+             withDuration: 0.3,
+             delay: 0,
+             options: [.curveEaseInOut]) {
+                 self.view.layoutIfNeeded()
+                 self.keyboard.alpha = 0
+             } completion: { _ in
+                 self.keyboard.isHidden = true
+                 sender?.resignFirstResponder()
+             }
+     }
 }
 
 

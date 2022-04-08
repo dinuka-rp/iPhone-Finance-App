@@ -21,11 +21,11 @@ extension UIViewController {
     /// - Returns: Principle Investment value (Present Value): Double
     func estimatePrincpleAmountFS(futureValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
 
-        let A = Double(futureValue) // FV
-        let r = Double(interest) / 100  // I
-        let t = Double(timeInYears)   // N
-        let CpY = Double(compoundsPerYear)  // CPY or n same as PayPY?
-        let P = Double(A / pow(1 + (r / CpY), CpY * t))
+        let A = futureValue // FV
+        let r = interest / 100  // I
+        let t = timeInYears   // N
+        let CpY = compoundsPerYear  // CPY or n same as PayPY?
+        let P = A / pow(1 + (r / CpY), CpY * t)
 
         return P.toFixed(2)
     }
@@ -34,11 +34,11 @@ extension UIViewController {
     /// - Returns: Interest Rate: Double
     func estimateInterestFS(presentValue: Double, futureValue: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
 
-        let P = Double(presentValue) //PV
-        let A = Double(futureValue)
-        let CpY = Double(compoundsPerYear)
-        let t = Double(timeInYears)
-        let r = Double(CpY * (pow(A / P, (1 / (CpY * t))) - 1))
+        let P = presentValue //PV
+        let A = futureValue
+        let CpY = compoundsPerYear
+        let t = timeInYears
+        let r = CpY * (pow(A / P, (1 / (CpY * t))) - 1)
 
         return (r * 100).toFixed(2)
     }
@@ -48,11 +48,11 @@ extension UIViewController {
     /// - Returns: Time in Years: Double
     func estimateTimeInYearsFS(presentValue: Double, interest: Double, futureValue: Double, compoundsPerYear: Double) -> Double {
 
-        let P = Double(presentValue)
-        let A = Double(futureValue)
-        let r = Double(interest) / 100
-        let CpY = Double(compoundsPerYear)
-        let t = Double(log(A / P) / (CpY * log(1 + (r / CpY))))
+        let P = presentValue
+        let A = futureValue
+        let r = interest / 100
+        let CpY = compoundsPerYear
+        let t = log(A / P) / (CpY * log(1 + (r / CpY)))
 
         return t.toFixed(2)
     }
@@ -61,11 +61,11 @@ extension UIViewController {
     /// - Returns: Future Value: Double
     func estimateFutureValueFS(presentValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
 
-        let P = Double(presentValue)
-        let r = Double(interest) / 100
-        let t = Double(timeInYears)
-        let CpY = Double(compoundsPerYear)
-        let A = Double(P * (pow((1 + r / CpY), CpY * t)))
+        let P = presentValue
+        let r = interest / 100
+        let t = timeInYears
+        let CpY = compoundsPerYear
+        let A = P * (pow((1 + r / CpY), CpY * t))
 
        return A.toFixed(2)
     }
