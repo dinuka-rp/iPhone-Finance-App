@@ -100,7 +100,12 @@ class CompoundSavingsController: UIViewController {
     }
     
     @IBAction func didTouchOutsideTextField(_ sender: UITapGestureRecognizer) {
-        hideKeyboard(nil)
+        // get active textfield - to remove first responder when hiding keyboard
+        let textField = textFields.filter { tf in
+            return tf.isFirstResponder
+        }.first
+        
+        hideKeyboard(textField)
     }
     
     @IBAction func didYearsToggle(_ sender: UISwitch) {

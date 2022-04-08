@@ -55,15 +55,15 @@
                                                 <rect key="frame" x="15" y="8" width="384" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compound Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxJ-T5-MG4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="314" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztC-Fz-5Tt">
-                                                        <rect key="frame" x="274" y="0.0" width="110" height="36"/>
+                                                        <rect key="frame" x="314" y="0.0" width="70" height="36"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="DUm-a2-Jlr"/>
+                                                            <constraint firstAttribute="width" constant="70" id="DUm-a2-Jlr"/>
                                                         </constraints>
                                                         <color key="tintColor" systemColor="tintColor"/>
                                                         <state key="normal" title="Button"/>
@@ -298,15 +298,15 @@
                                                 <rect key="frame" x="15" y="10" width="384" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5z-LJ-1qt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="314" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-F8-v0k">
-                                                        <rect key="frame" x="274" y="0.0" width="110" height="36"/>
+                                                        <rect key="frame" x="314" y="0.0" width="70" height="36"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="ekj-O5-8Fc"/>
+                                                            <constraint firstAttribute="width" constant="70" id="ekj-O5-8Fc"/>
                                                         </constraints>
                                                         <color key="tintColor" systemColor="tintColor"/>
                                                         <state key="normal" title="Button"/>
@@ -518,15 +518,15 @@
                                                 <rect key="frame" x="15" y="10" width="384" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loans Mortgage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQU-01-jG7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="314" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVq-oJ-chN">
-                                                        <rect key="frame" x="274" y="0.0" width="110" height="36"/>
+                                                        <rect key="frame" x="314" y="0.0" width="70" height="36"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="fPO-8Z-f6P"/>
+                                                            <constraint firstAttribute="width" constant="70" id="fPO-8Z-f6P"/>
                                                         </constraints>
                                                         <color key="tintColor" systemColor="tintColor"/>
                                                         <state key="normal" title="Button"/>
