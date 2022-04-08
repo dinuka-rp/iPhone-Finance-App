@@ -23,7 +23,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-xL-Vvj">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="1">
+                                    <buttonConfiguration key="configuration" style="tinted" title="1" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -33,7 +33,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQz-VG-iJv">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="2">
+                                    <buttonConfiguration key="configuration" style="tinted" title="2" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -43,7 +43,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmP-jG-OTk">
                                     <rect key="frame" x="270.5" y="0.0" width="127.5" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="3">
+                                    <buttonConfiguration key="configuration" style="tinted" title="3" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -58,7 +58,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbX-2A-ZRU">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="4">
+                                    <buttonConfiguration key="configuration" style="tinted" title="4" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -68,7 +68,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0a9-pY-cSu">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="5">
+                                    <buttonConfiguration key="configuration" style="tinted" title="5" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -78,7 +78,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPE-85-wYg">
                                     <rect key="frame" x="270.5" y="0.0" width="127.5" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="6">
+                                    <buttonConfiguration key="configuration" style="tinted" title="6" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -93,7 +93,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJq-jB-Twi">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="7">
+                                    <buttonConfiguration key="configuration" style="tinted" title="7" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -103,7 +103,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ka-xy-i2h">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="8">
+                                    <buttonConfiguration key="configuration" style="tinted" title="8" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -113,7 +113,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozI-TJ-hLb">
                                     <rect key="frame" x="270.5" y="0.0" width="127.5" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="9">
+                                    <buttonConfiguration key="configuration" style="tinted" title="9" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -131,7 +131,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5f-Xv-AEn">
                                             <rect key="frame" x="0.0" y="0.0" width="127.5" height="33.5"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" title="+/-">
+                                            <buttonConfiguration key="configuration" style="tinted" title="+/-" cornerStyle="capsule">
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                             </buttonConfiguration>
                                             <connections>
@@ -141,7 +141,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVb-BP-gCt">
                                             <rect key="frame" x="0.0" y="39.5" width="127.5" height="33"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" title=".">
+                                            <buttonConfiguration key="configuration" style="tinted" title="." cornerStyle="capsule">
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                             </buttonConfiguration>
                                             <connections>
@@ -153,7 +153,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soo-y2-urv">
                                     <rect key="frame" x="135.5" y="0.0" width="127" height="72.5"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="0">
+                                    <buttonConfiguration key="configuration" style="tinted" title="0" cornerStyle="medium">
                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -166,7 +166,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nph-WG-g0Z">
                                             <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" image="delete.left.fill" catalog="system" title=""/>
+                                            <buttonConfiguration key="configuration" style="tinted" image="delete.left.fill" catalog="system" title="" cornerStyle="capsule"/>
                                             <connections>
                                                 <action selector="didPressDelete:" destination="-1" eventType="touchUpInside" id="O3S-R9-Lf4"/>
                                             </connections>

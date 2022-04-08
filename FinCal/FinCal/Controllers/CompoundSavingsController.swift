@@ -93,7 +93,7 @@ class CompoundSavingsController: UIViewController {
     @IBAction func didYearsToggle(_ sender: UISwitch) {
         let isYearsToggleOn = sender.isOn
         
-        let timeNumPaymentsTextField = getTextFieldByTag(tag: 4, textFields: textFields)
+        let timeNumPaymentsTextField = getTextFieldByTag(tag: 5, textFields: textFields)
         updateUIForYearsToggle(isYearsToggleOn: isYearsToggleOn, textField: timeNumPaymentsTextField!, timeNumPaymentsLabel: timeNumPaymentsLabel)
         
         if isYearsToggleOn {
@@ -317,7 +317,7 @@ extension CompoundSavingsController: CustomKeyboardProtocol{
 //         MARK: This is only needed for compound savings to show money taken out in monthly payments
 
         // check if this textfield can be made negative (only payments going out need a negative value) - only applied for compound savings?
-        let tfTagsAllowed: [Int] = []
+        let tfTagsAllowed: [Int] = [3]
 
         let textField = textFields.filter { tf in
             return tf.isFirstResponder
@@ -334,6 +334,8 @@ extension CompoundSavingsController: CustomKeyboardProtocol{
                 } else{
                     tf.text! = "-\(tfText)"
                 }
+                
+                changeInput(textField: tf)
             }
         }
     }
