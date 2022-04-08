@@ -222,23 +222,25 @@ class SimpleSavingsController: UIViewController {
 //        }
         else{
             // update UserDefaults value with whatever that's available
+            //            FIXME: this is a problem - JSONEncoder error if nil values are there?
+            //        debugDescription: "Unable to encode Double.nan directly in JSON. Use JSONEncoder.NonConformingFloatEncodingStrategy.convertToString to specify how the value should be encoded.", underlyingError: nil))
 
-            // get all values in textfields and assign to relevant variables, to pass into functions
-            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
-            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
-            
-            var timeInYears: Double? = nil
-            
-            if timeNumPayments != nil{
-            // convert time to years
-                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
-            }
-            
-            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
-            
-            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
+//            // get all values in textfields and assign to relevant variables, to pass into functions
+//            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
+//            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+//            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
+//            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
+//
+//            var timeInYears: Double? = nil
+//
+//            if timeNumPayments != nil{
+//            // convert time to years
+//                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+//            }
+//
+//            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+//
+//            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
         }
     }
 
@@ -298,10 +300,16 @@ extension SimpleSavingsController: CustomKeyboardProtocol{
         }.first
         
         if let tf = textField {
-            if (tf.text?.count ?? 0) > 0 {
+            var tfCharCount = tf.text?.count ?? 0
+            if (tfCharCount) > 0 {
                 //  remove last character
                 tf.text!.removeLast()
-                changeInput(textField: tf)
+                tfCharCount -= 1
+                
+                // run this only if the input field has any numbers
+                if tfCharCount > 0 {
+                    changeInput(textField: tf)
+                }
             }
         }
     }
