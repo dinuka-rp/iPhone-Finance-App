@@ -19,6 +19,8 @@ class LoanController: UIViewController {
     
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
 
+    @IBOutlet weak var clearAllButton: UIButton!
+
     var lastCalculatedTfTag:Int?
     
     let defaults = UserDefaults.standard
@@ -126,9 +128,26 @@ class LoanController: UIViewController {
         defaults.set(isYearsToggleOn, forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
     }
     
+    @IBAction func clearAllTextFields(_ sender: UIButton) {
+        textFields.forEach{textField in
+           // clear each textField
+            textField.text = ""
+        }
+        
+        let loan = Loan(presentValue: nil, interest: nil, monthlyPayment: nil, numOfPayments: nil, lastCalculatedTag: nil)
 
+        saveObjInUserDefaults(loan: loan)   // update UserDefaults value
+        
+        // hide clear all button
+        clearAllButton.isHidden = true
+    }
+    
     func changeInput(textField: UITextField) {
         let inputTfTag = textField.tag
+
+        if clearAllButton.isHidden {
+            clearAllButton.isHidden = false // show clear btn
+        }
 
         let isAllButOneFilled  = isAllButOneFilled(textFields: textFields)
         let isAllFilled = isAllFilled(textFields: textFields)
@@ -205,11 +224,14 @@ class LoanController: UIViewController {
                     print(error)
                 }
             default:
-                // save this after calculation in all screens!! The calculated field won't be saved otherwise
-                loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
-
-                saveObjInUserDefaults(loan: loan)   // update UserDefaults value
+                return
             }
+            
+            // save this after calculation in all screens!! The calculated field won't be saved otherwise
+            loan = Loan(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, numOfPayments: numOfPayments, lastCalculatedTag: lastCalculatedTfTag)
+
+            saveObjInUserDefaults(loan: loan)   // update UserDefaults value
+            
             // highlight UI of textfield with estimated value/ change label font color
 
         } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {

@@ -55,18 +55,24 @@
                                                 <rect key="frame" x="15" y="8" width="384" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compound Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxJ-T5-MG4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="266" height="36"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztC-Fz-5Tt">
-                                                        <rect key="frame" x="266" y="0.0" width="118" height="36"/>
+                                                        <rect key="frame" x="274" y="0.0" width="110" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="110" id="DUm-a2-Jlr"/>
+                                                        </constraints>
                                                         <color key="tintColor" systemColor="tintColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Clear All">
-                                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="10"/>
+                                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="11"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="clearAllTextFields:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="0QP-HT-B0R"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -241,8 +247,9 @@
                             <constraint firstItem="k6U-V2-evl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xfZ-qF-oCn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Compound Savings" id="a3S-Ea-Ti7"/>
+                    <tabBarItem key="tabBarItem" title="Compound Savings" image="banknote.fill" catalog="system" id="a3S-Ea-Ti7"/>
                     <connections>
+                        <outlet property="clearAllButton" destination="ztC-Fz-5Tt" id="TTn-oS-Gez"/>
                         <outlet property="keyboard" destination="k6U-V2-evl" id="sNV-oy-EVm"/>
                         <outlet property="keyboardBottomConstraint" destination="oBZ-51-NZC" id="8Id-7A-BvJ"/>
                         <outlet property="timeNumPaymentsLabel" destination="1sk-PE-7rb" id="Z7u-vh-XDl"/>
@@ -287,12 +294,32 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-Mf-qmK">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="446"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5z-LJ-1qt">
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAp-gG-i0k">
                                                 <rect key="frame" x="15" y="10" width="384" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Savings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5z-LJ-1qt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-F8-v0k">
+                                                        <rect key="frame" x="274" y="0.0" width="110" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="110" id="ekj-O5-8Fc"/>
+                                                        </constraints>
+                                                        <color key="tintColor" systemColor="tintColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Clear All">
+                                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="11"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="clearAllTextFields:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="kgy-g3-UfU"/>
+                                                            <action selector="clearAllTextFields:" destination="NFt-db-Gxd" eventType="touchUpInside" id="vWH-1F-qAE"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kIP-Ql-iBD">
                                                 <rect key="frame" x="15" y="64" width="384" height="62.5"/>
                                                 <subviews>
@@ -441,8 +468,9 @@
                             <constraint firstItem="Z20-KW-QJU" firstAttribute="leading" secondItem="cLH-rm-Guh" secondAttribute="leading" id="Vf5-Pv-uEg"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Simple Savings" id="YGm-4X-Q6x"/>
+                    <tabBarItem key="tabBarItem" title="Simple Savings" image="banknote" catalog="system" id="YGm-4X-Q6x"/>
                     <connections>
+                        <outlet property="clearAllButton" destination="sMl-F8-v0k" id="uq9-7B-8Y4"/>
                         <outlet property="keyboard" destination="eiY-c6-h95" id="WUB-dw-hc8"/>
                         <outlet property="keyboardBottomConstraint" destination="6Bf-LY-1FV" id="Dxw-fw-4v3"/>
                         <outlet property="timeNumPaymentsLabel" destination="iZc-rO-dDf" id="eKF-25-glS"/>
@@ -486,12 +514,32 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="wiN-gw-0X9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="446"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loans Mortgage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQU-01-jG7">
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZM-72-wsy">
                                                 <rect key="frame" x="15" y="10" width="384" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loans Mortgage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQU-01-jG7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVq-oJ-chN">
+                                                        <rect key="frame" x="274" y="0.0" width="110" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="110" id="fPO-8Z-f6P"/>
+                                                        </constraints>
+                                                        <color key="tintColor" systemColor="tintColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Clear All">
+                                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="11"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="clearAllTextFields:" destination="pOK-bh-IZd" eventType="touchUpInside" id="U0B-OK-Q2V"/>
+                                                            <action selector="clearAllTextFields:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="iky-s7-2j7"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Lhl-S6-OtA">
                                                 <rect key="frame" x="15" y="64" width="384" height="62.5"/>
                                                 <subviews>
@@ -640,8 +688,9 @@
                             <constraint firstItem="YUg-BW-bWK" firstAttribute="top" secondItem="lVt-f1-QBd" secondAttribute="top" id="rxI-Q8-UZy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Loans Mortgage" id="4s2-rJ-6Iy"/>
+                    <tabBarItem key="tabBarItem" title="Loans Mortgage" image="creditcard.circle" catalog="system" id="4s2-rJ-6Iy"/>
                     <connections>
+                        <outlet property="clearAllButton" destination="TVq-oJ-chN" id="SGt-LN-fbJ"/>
                         <outlet property="keyboard" destination="vBT-ac-xmb" id="MxF-dx-CqD"/>
                         <outlet property="keyboardBottomConstraint" destination="kqc-qs-yAv" id="PSx-d0-Ghd"/>
                         <outlet property="timeNumPaymentsLabel" destination="P4t-JC-xGW" id="5nM-lq-r7H"/>
@@ -707,6 +756,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="banknote" catalog="system" width="128" height="78"/>
+        <image name="banknote.fill" catalog="system" width="128" height="78"/>
+        <image name="creditcard.circle" catalog="system" width="128" height="121"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

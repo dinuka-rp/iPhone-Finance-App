@@ -19,6 +19,8 @@ class CompoundSavingsController: UIViewController {
     
     @IBOutlet weak var timeNumPaymentsLabel: UILabel!
 
+    @IBOutlet weak var clearAllButton: UIButton!
+    
     var lastCalculatedTfTag:Int?
     
     let defaults = UserDefaults.standard
@@ -129,10 +131,27 @@ class CompoundSavingsController: UIViewController {
         defaults.set(isYearsToggleOn, forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
     }
     
-
+    
+    @IBAction func clearAllTextFields(_ sender: UIButton) {
+        textFields.forEach{textField in
+           // clear each textField
+            textField.text = ""
+        }
+        
+        let compoundSaving = CompoundSaving(presentValue: nil, interest: nil, monthlyPayment: nil, futureValue: nil, timeInYears: nil, lastCalculatedTag: nil)
+        saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
+        
+        // hide clear all button
+        clearAllButton.isHidden = true
+    }
+    
     func changeInput(textField: UITextField) {
         let inputTfTag = textField.tag
-
+        
+        if clearAllButton.isHidden {
+            clearAllButton.isHidden = false // show clear btn
+        }
+        
         let isAllButOneFilled  = isAllButOneFilled(textFields: textFields)
         let isAllFilled = isAllFilled(textFields: textFields)
         let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
@@ -209,11 +228,14 @@ class CompoundSavingsController: UIViewController {
                 }
                 timeInYears = timeEstimationInYears
             default:
-                // save this after calculation in all screens!! The calculated field won't be saved otherwise
-                compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
-
-                saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
+               return
             }
+            
+            // save this after calculation in all screens. The calculated field won't be saved otherwise
+            compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+
+            saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
+            
             // highlight UI of textfield with estimated value/ change label font color
 
         } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
