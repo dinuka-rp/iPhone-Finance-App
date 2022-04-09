@@ -134,17 +134,6 @@ class SimpleSavingsController: UIViewController {
         defaults.set(isYearsToggleOn, forKey: GlobalConstants.YEARS_TOGGLED_UD_KEY)
     }
 
-    
-    /// Check whether all conditions are satisfied to autogenerate the result
-    /// - Returns: Bool
-//    func isCalculatable(inputTag: Int) -> Bool{
-//        let isAllButOneFilled  = isAllButOneFilled()
-//        let isAllFilled = isAllFilled()
-//        let isSatisfied = isAllButOneFilled || (isAllFilled && inputTag != lastCalculatedTfTag)
-//
-//        return isSatisfied
-//    }
-
     @IBAction func clearAllTextFields(_ sender: UIButton) {
         textFields.forEach{textField in
            // clear each textField
@@ -171,7 +160,6 @@ class SimpleSavingsController: UIViewController {
         let isAllFilled = isAllFilled(textFields: textFields)
         let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
 
-        
         // check if it's possible to make a calculation
         if (isCalculatable) {
             // identify the missing field/ tf to be calculateed
@@ -251,33 +239,46 @@ class SimpleSavingsController: UIViewController {
             // TODO: alert user that at least one field has to be empty to make an estimation
             print("Delete another field to make an estimation. At least one field needs to be empty for an estimation.")
         }
-//     TODO:   else if {
-//            // 2 or more fields empty - reset the lastCalculatedTfTag
-//            lastCalculatedTfTag = nil
-//            // save lastCalculatedTfTag to user defaults
-//            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
-//        }
         else{
-            // update UserDefaults value with whatever that's available
-            //            FIXME: this is a problem - JSONEncoder error if nil values are there?
-            //        debugDescription: "Unable to encode Double.nan directly in JSON. Use JSONEncoder.NonConformingFloatEncodingStrategy.convertToString to specify how the value should be encoded.", underlyingError: nil))
+            let isAllButTwoFilled = isAllButTwoFilled(textFields: textFields)
 
-//            // get all values in textfields and assign to relevant variables, to pass into functions
-//            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-//            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-//            let futureValue = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
-//            let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
-//
-//            var timeInYears: Double? = nil
-//
-//            if timeNumPayments != nil{
-//            // convert time to years
-//                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
-//            }
-//
-//            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
-//
-//            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
+            if isAllButTwoFilled {
+                // 2 or more fields empty - reset the lastCalculatedTfTag
+                lastCalculatedTfTag = nil
+                // save lastCalculatedTfTag to user defaults
+                defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
+            }
+            
+            // update UserDefaults value with whatever that's available
+            
+            // get all values in textfields and assign to relevant variables, to pass into functions
+            var presentValue: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 1, textFields: textFields)?.text {
+                presentValue = Double(tfText)
+            }
+            var interest: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 2, textFields: textFields)?.text {
+                interest = Double(tfText)
+            }
+            var futureValue: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 3, textFields: textFields)?.text {
+                futureValue = Double(tfText)
+            }
+            var timeNumPayments: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 4, textFields: textFields)?.text {
+                timeNumPayments = Double(tfText)
+            }
+
+            var timeInYears: Double? = nil
+
+            if timeNumPayments != nil{
+            // convert time to years
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+            }
+
+            let simpleSaving = SimpleSaving(presentValue: presentValue, interest: interest, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+
+            saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
         }
     }
 

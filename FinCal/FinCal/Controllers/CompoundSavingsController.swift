@@ -248,34 +248,50 @@ class CompoundSavingsController: UIViewController {
             // TODO: alert user that at least one field has to be empty to make an estimation
             print("Delete another field to make an estimation. At least one field needs to be empty for an estimation.")
         }
-//     TODO:   else if {
-//            // 2 or more fields empty - reset the lastCalculatedTfTag
-//            lastCalculatedTfTag = nil
-//            // save lastCalculatedTfTag to user defaults
-//            defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
-//        }
         else{
-            // update UserDefaults value with whatever that's available
-            //            FIXME: this is a problem - JSONEncoder error if nil values are there?
-            //        debugDescription: "Unable to encode Double.nan directly in JSON. Use JSONEncoder.NonConformingFloatEncodingStrategy.convertToString to specify how the value should be encoded.", underlyingError: nil))
+            let isAllButTwoFilled = isAllButTwoFilled(textFields: textFields)
+
+            if isAllButTwoFilled {
+                // 2 or more fields empty - reset the lastCalculatedTfTag
+                lastCalculatedTfTag = nil
+                // save lastCalculatedTfTag to user defaults
+                defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
+            }
             
-//            // get all values in textfields and assign to relevant variables, to pass into functions
-//            let presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-//            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
-//            let monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
-//            let futureValue = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
-//            let timeNumPayments = Double((getTextFieldByTag(tag: 5, textFields: textFields)?.text)!)
-//
-//            var timeInYears: Double? = nil
-//
-//            if timeNumPayments != nil{
-//            // convert time to years
-//                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
-//            }
-//
-//            let compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
-//
-//            saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
+            // update UserDefaults value with whatever that's available
+
+            // get all values in textfields and assign to relevant variables, to pass into functions
+            var presentValue: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 1, textFields: textFields)?.text {
+                presentValue = Double(tfText)
+            }
+            var interest: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 2, textFields: textFields)?.text {
+                interest = Double(tfText)
+            }
+            var monthlyPayment: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 3, textFields: textFields)?.text {
+                monthlyPayment = Double(tfText)
+            }
+            var futureValue: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 4, textFields: textFields)?.text {
+                futureValue = Double(tfText)
+            }
+            var timeNumPayments: Double? = nil
+            if let tfText = getTextFieldByTag(tag: 5, textFields: textFields)?.text {
+                timeNumPayments = Double(tfText)
+            }
+
+            var timeInYears: Double? = nil
+
+            if timeNumPayments != nil{
+            // convert time to years
+                timeInYears = getTimeInYears(timeNumPayments:timeNumPayments!, yearsToggle: yearsToggle)
+            }
+
+            let compoundSaving = CompoundSaving(presentValue: presentValue, interest: interest, monthlyPayment: monthlyPayment, futureValue: futureValue, timeInYears: timeInYears, lastCalculatedTag: lastCalculatedTfTag)
+
+            saveObjInUserDefaults(compoundSaving: compoundSaving)   // update UserDefaults value
         }
     }
 
