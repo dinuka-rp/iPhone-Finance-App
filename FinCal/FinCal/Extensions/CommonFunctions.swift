@@ -67,7 +67,4 @@ extension UIViewController {
             return tf.text?.count != 0
             }.count == textFields.count )
     }
-    
-    // MARK: show/ hide keyboard
-    
 }

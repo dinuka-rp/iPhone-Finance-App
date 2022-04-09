@@ -15,15 +15,6 @@ class HelpController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    contain a help view that will contain instructions and guidance to the user on how to use the software. You have complete freedom on how to implement this view and this can be done as separate view or modal context views for example, e.g. a pop- overview activated by a help button.
 
 }

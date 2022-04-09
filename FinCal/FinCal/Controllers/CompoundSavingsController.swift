@@ -205,7 +205,7 @@ class CompoundSavingsController: UIViewController {
                 presentValue = calculatedEstimate
             case 2:
                 // interest
-                // TODO: throw alert?
+                // TODO: show alert?
                 print("Cannot calculate interest?")
 //                textFieldTBC?.text = "\(calculatedEstimate)"
 //                interest = calculatedEstimate

@@ -23,6 +23,8 @@ extension UIViewController {
         return P.toFixed(2)
     }
     
+    //  TODO: show an alert that this is not possible - not required according to CW spec
+    //      - You only need to solve for interest rate in problems where there is no monthly payments. For example, simple lump sum investments.
     /// Calculate the estimation for the loan interest
     /// - Returns: Interest: Double
     func estimateLoanInterest(presentValue: Double,  noOfPayments: Double, monthlyPayment: Double) -> Double {
