@@ -82,7 +82,8 @@ extension UIViewController {
     /// Calculate the estimation of monthly payment value, with regular monthly contributions
     /// - Returns: Monthly Payment Value: Double
     func estimateMonthlyPaymentValueRC(futureValue: Double, presentValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
-
+//FIXME: some issue with the calculation - this gives a negative value
+        
         let A = futureValue // FV
         let P = presentValue
         let r = interest / 100

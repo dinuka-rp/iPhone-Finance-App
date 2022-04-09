@@ -170,8 +170,8 @@ class LoanController: UIViewController {
         
         let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
         
-        if isLastCalculatedTfSame {
-            // reset border of last calculated textfield
+        if isLastCalculatedTfSame && !isAllFilled {
+            // reset border of last calculated textfield was changed and all fields aren't full
             lastCalculatedTf?.layer.borderColor = nil
             lastCalculatedTf?.layer.borderWidth = 0
         }
@@ -192,7 +192,7 @@ class LoanController: UIViewController {
 
             // get all values in textfields and assign to relevant variables, to pass into functions
             var presentValue = Double((getTextFieldByTag(tag: 1, textFields: textFields)?.text)!)
-            var interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
+            let interest = Double((getTextFieldByTag(tag: 2, textFields: textFields)?.text)!)
             var monthlyPayment = Double((getTextFieldByTag(tag: 3, textFields: textFields)?.text)!)
             let timeNumPayments = Double((getTextFieldByTag(tag: 4, textFields: textFields)?.text)!)
 
@@ -218,9 +218,10 @@ class LoanController: UIViewController {
                 presentValue = calculatedEstimate
             case 2:
                 // interest
-                calculatedEstimate = estimateLoanInterest(presentValue: presentValue!, noOfPayments: numOfPayments!, monthlyPayment: monthlyPayment!)
-                textFieldTBC?.text = "\(calculatedEstimate)"
-                interest = calculatedEstimate
+                dispalyOKAlert(message: "The app does not support the calculation of interest for compounds at the moment.", title: "Unsupported estimate calculation request")
+//                calculatedEstimate = estimateLoanInterest(presentValue: presentValue!, noOfPayments: numOfPayments!, monthlyPayment: monthlyPayment!)
+//                textFieldTBC?.text = "\(calculatedEstimate)"
+//                interest = calculatedEstimate
             case 3:
                 // monthly payment
                 calculatedEstimate = estimateLoanMonthlyPayment(presentValue: presentValue!, interest: interest!, noOfPayments: numOfPayments!)
@@ -262,7 +263,7 @@ class LoanController: UIViewController {
         } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
             // if the lastCalculatedTf was altered, show that another field has to be deleted, to generate an estimation
             // alert user that at least one field has to be empty to make an estimation
-            dispalyAlert(message: "Clear one field to make an estimation. At least one field needs to be empty to generate an estimation.", title: "Too many fields filled")
+            dispalyOKAlert(message: "Clear one field to make an estimation. At least one field needs to be empty to generate an estimation.", title: "Too many fields filled")
         }
         else{
             let isAllButTwoFilled = isAllButTwoFilled(textFields: textFields)

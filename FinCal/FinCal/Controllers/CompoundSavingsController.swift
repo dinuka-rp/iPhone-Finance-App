@@ -173,8 +173,8 @@ class CompoundSavingsController: UIViewController {
         
         let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
         
-        if isLastCalculatedTfSame {
-            // reset border of last calculated textfield
+        if isLastCalculatedTfSame && !isAllFilled {
+            // reset border of last calculated textfield was changed and all fields aren't full
             lastCalculatedTf?.layer.borderColor = nil
             lastCalculatedTf?.layer.borderWidth = 0
         }
@@ -223,7 +223,8 @@ class CompoundSavingsController: UIViewController {
             case 2:
                 // interest
                 // TODO: show alert?
-                print("Cannot calculate interest?")
+//                print("Cannot calculate interest?")
+                dispalyOKAlert(message: "The app does not support the calculation of interest for compounds at the moment.", title: "Unsupported estimate calculation request")
 //                textFieldTBC?.text = "\(calculatedEstimate)"
 //                interest = calculatedEstimate
             case 3:
@@ -266,7 +267,7 @@ class CompoundSavingsController: UIViewController {
         } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
             // if the lastCalculatedTf was altered, show that another field has to be deleted, to generate an estimation
             // alert user that at least one field has to be empty to make an estimation
-            dispalyAlert(message: "Clear one field to make an estimation. At least one field needs to be empty to generate an estimation.", title: "Too many fields filled")
+            dispalyOKAlert(message: "Clear one field to make an estimation. At least one field needs to be empty to generate an estimation.", title: "Too many fields filled")
         }
         else{
             let isAllButTwoFilled = isAllButTwoFilled(textFields: textFields)
