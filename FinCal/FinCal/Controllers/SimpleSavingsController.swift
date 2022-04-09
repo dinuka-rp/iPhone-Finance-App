@@ -86,6 +86,14 @@ class SimpleSavingsController: UIViewController {
                 }
                 // MARK: load lastCalculatedTfTag of SimpleSavings
                 lastCalculatedTfTag = simpleSaving.lastCalculatedTag
+                
+                if lastCalculatedTfTag != nil{
+                    let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+                    // highlight UI of textfield with estimated value/ change label font color
+                    if let highlightableTF = lastCalculatedTf {
+                        highlightLastCalculatedTF(textFieldTBC: highlightableTF)
+                    }
+                }
             } catch {
                 print("Unable to Decode object (\(error))")
             }
@@ -158,8 +166,18 @@ class SimpleSavingsController: UIViewController {
         
         let isAllButOneFilled  = isAllButOneFilled(textFields: textFields)
         let isAllFilled = isAllFilled(textFields: textFields)
-        let isCalculatable = isAllButOneFilled || (isAllFilled && inputTfTag != lastCalculatedTfTag)
-
+        let isLastCalculatedTfSame = isLastCalculatedTfSame(inputTfTag: inputTfTag, lastCalculatedTfTag: lastCalculatedTfTag)
+        
+        let isCalculatable = isAllButOneFilled || (isAllFilled && !isLastCalculatedTfSame)
+        
+        let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+        
+        if isLastCalculatedTfSame {
+            // reset border of last calculated textfield
+            lastCalculatedTf?.layer.borderColor = nil
+            lastCalculatedTf?.layer.borderWidth = 0
+        }
+        
         // check if it's possible to make a calculation
         if (isCalculatable) {
             // identify the missing field/ tf to be calculateed
@@ -171,7 +189,7 @@ class SimpleSavingsController: UIViewController {
             if textFieldTBC?.tag != nil {
                 lastCalculatedTfTag = textFieldTBC!.tag
             } else {
-                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+                textFieldTBC = lastCalculatedTf
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
@@ -233,11 +251,14 @@ class SimpleSavingsController: UIViewController {
             saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
             
             // highlight UI of textfield with estimated value/ change label font color
+            if let highlightableTF = textFieldTBC {
+                highlightLastCalculatedTF(textFieldTBC: highlightableTF)
+            }
             
         } else if (isAllFilled && inputTfTag == lastCalculatedTfTag) {
             // if the lastCalculatedTf was altered, show that another field has to be deleted, to generate an estimation
-            // TODO: alert user that at least one field has to be empty to make an estimation
-            print("Delete another field to make an estimation. At least one field needs to be empty for an estimation.")
+            // alert user that at least one field has to be empty to make an estimation
+            dispalyAlert(message: "Clear one field to make an estimation. At least one field needs to be empty to generate an estimation.", title: "Too many fields filled")
         }
         else{
             let isAllButTwoFilled = isAllButTwoFilled(textFields: textFields)

@@ -105,7 +105,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="N9f-NI-Xpc"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FW3-oS-fF5"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -129,7 +129,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="YLs-jl-LRG"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="arW-4p-5Rc"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -152,7 +152,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="pap-M5-uzP"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C5D-g0-BRa"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -175,7 +175,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="cLG-4e-15n"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4br-CI-1jl"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -198,7 +198,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="jd4-TO-HXt"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsh-b7-DfD"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -366,7 +366,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="AaZ-Hr-tbA"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="Lgl-mK-umT"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -390,7 +390,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="RDK-p4-y1S"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="9nw-iK-EBZ"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -413,7 +413,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="hQE-Fr-I4C"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="u4s-qQ-PEn"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -437,7 +437,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="2WV-J3-RIP"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="VB9-F2-Qgu"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -603,7 +603,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="Py9-kh-1nN"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="A8S-Rd-boB"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -627,7 +627,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="8fB-cA-Wxy"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="76t-7B-Cj9"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -650,7 +650,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="xWI-cY-yjE"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="9oS-T6-cid"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -673,7 +673,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="HZ0-AB-CDb"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="dgT-ff-zfB"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>

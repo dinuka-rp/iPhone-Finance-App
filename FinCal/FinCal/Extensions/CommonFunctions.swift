@@ -78,4 +78,26 @@ extension UIViewController {
         
         return isSatisfied
     }
+    
+    /// Check if the current input textfield is the same as the last calculated text field
+    func isLastCalculatedTfSame(inputTfTag: Int, lastCalculatedTfTag: Int?) -> Bool{
+        return inputTfTag == lastCalculatedTfTag
+    }
+    
+    // MARK: UI functionalities
+    func dispalyAlert(message: String, title: String) {
+       let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+       let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    
+       alertController.addAction(OKAction)
+    
+       self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func highlightLastCalculatedTF(textFieldTBC: UITextField) {
+        let highlightColor : UIColor = UIColor.systemMint
+        textFieldTBC.layer.borderColor = highlightColor.cgColor
+        textFieldTBC.layer.borderWidth = 1
+        textFieldTBC.layer.cornerRadius = 6
+    }
 }
