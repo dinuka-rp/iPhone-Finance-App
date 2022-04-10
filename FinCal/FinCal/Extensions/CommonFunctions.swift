@@ -68,6 +68,37 @@ extension UIViewController {
             }.count == textFields.count )
     }
     
-    // MARK: show/ hide keyboard
+    /// Check if all fields except two fields have been filled - to identify whether to reset lastCalculatedTag
+    /// - Returns: Bool
+    func isAllButTwoFilled(textFields: [UITextField]) -> Bool{
+        let isSatisfied = textFields.filter { tf in
+            // get all textfields that have at least one character filled
+            return (tf.text?.isEmpty)!
+            }.count == 2
+        
+        return isSatisfied
+    }
     
+    /// Check if the current input textfield is the same as the last calculated text field
+    func isLastCalculatedTfSame(inputTfTag: Int, lastCalculatedTfTag: Int?) -> Bool{
+        return inputTfTag == lastCalculatedTfTag
+    }
+    
+    // MARK: UI functionalities
+    /// display an ok alert with a title & descriptive message
+    func dispalyOKAlert(message: String, title: String) {
+       let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+       let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    
+       alertController.addAction(OKAction)
+    
+       self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func highlightLastCalculatedTF(textFieldTBC: UITextField) {
+        let highlightColor : UIColor = UIColor.systemMint
+        textFieldTBC.layer.borderColor = highlightColor.cgColor
+        textFieldTBC.layer.borderWidth = 1
+        textFieldTBC.layer.cornerRadius = 6
+    }
 }

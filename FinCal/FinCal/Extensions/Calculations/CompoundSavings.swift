@@ -28,7 +28,8 @@ extension UIViewController {
         return P.toFixed(2)
     }
     
-    //  TODO: show an alert that this is not possible? according to Dilum's CW
+    //  TODO: show an alert that this is not possible - not required according to CW spec
+    //      - You only need to solve for interest rate in problems where there is no monthly payments. For example, simple lump sum investments.
 //    func estimateInterestRC(presentValue: Double, futureValue: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
 //        let P = presentValue //PV
 //        let A = futureValue
@@ -81,7 +82,8 @@ extension UIViewController {
     /// Calculate the estimation of monthly payment value, with regular monthly contributions
     /// - Returns: Monthly Payment Value: Double
     func estimateMonthlyPaymentValueRC(futureValue: Double, presentValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
-
+//FIXME: some issue with the calculation - this gives a negative value
+        
         let A = futureValue // FV
         let P = presentValue
         let r = interest / 100
