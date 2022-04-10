@@ -34,7 +34,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-7l-M9W">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-7l-M9W">
                                 <rect key="frame" x="72" y="323" width="270" height="270"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="270" id="6J7-tW-sCk"/>
@@ -63,7 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon-Transparent" width="1024" height="1024"/>
+        <image name="AppIcon-transparent" width="1024" height="1024"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
