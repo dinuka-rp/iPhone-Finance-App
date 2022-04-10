@@ -84,14 +84,14 @@ extension UIViewController {
     func estimateMonthlyPaymentValueRC(futureValue: Double, presentValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
         
         let A = futureValue // FV
-        let P = presentValue
+//        let P = presentValue
         let r = interest / 100
         let t = timeInYears
         let CpY = compoundsPerYear  // n
 //        let PMT = monthlyPayment
 
 //        let PMT = (P - (A * pow((1 + r / CpY), CpY * t))) / ((pow((1 + r / CpY), CpY * t) - 1) / (r / CpY)) / (1 + r / CpY)
-        let PMT = P - (A / ((pow( (1 + ( r / CpY )), (CpY * t)) - 1) / (r/CpY)))
+        let PMT = (A / ((pow( (1 + ( r / CpY )), (CpY * t)) - 1) / (r/CpY)))
 
        return PMT.toFixed(2)
     }

@@ -176,13 +176,11 @@ class LoanController: UIViewController {
         
         let isCalculatable = isAllButOneFilled || (isAllFilled && !isLastCalculatedTfSame)
         
-        if lastCalculatedTfTag != nil {
-            let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
-            
-            if isLastCalculatedTfSame && !isAllFilled {
-                // reset border of last calculated textfield was changed and all fields aren't full
-                lastCalculatedTf?.layer.borderColor = nil
-                lastCalculatedTf?.layer.borderWidth = 0
+        if isAllButOneFilled{
+            textFields.forEach{textField in
+                // remove border from all textFields
+                textField.layer.borderColor = nil
+                textField.layer.borderWidth = 0
             }
         }
         
@@ -281,9 +279,18 @@ class LoanController: UIViewController {
 
             if isAllButTwoFilled {
                 // 2 or more fields empty - reset the lastCalculatedTfTag
-                lastCalculatedTfTag = nil
-                // save lastCalculatedTfTag to user defaults
-                defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
+                
+                if lastCalculatedTfTag != nil{
+                    let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+                    
+                    lastCalculatedTf?.layer.borderColor = nil
+                    lastCalculatedTf?.layer.borderWidth = 0
+                    
+                    lastCalculatedTfTag = nil
+                    
+                    // save lastCalculatedTfTag to user defaults
+                    defaults.set(lastCalculatedTfTag, forKey: "lastCalculatedTfTagSimpleSavings")
+                }
             }
             
             // update UserDefaults value with whatever that's available
