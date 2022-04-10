@@ -14,11 +14,11 @@ extension UIViewController {
     /// Calculate the estimation of Principle investment amount (Present Value/ Loan Amount)  for a Loan
     /// - Returns: Principle Investment value (Present Value/ Loan Amount): Double
     func estimateLoanPrincpleAmount(interest: Double, noOfPayments: Double, monthlyPayment:Double) -> Double {
-        let r = interest / 100  // I
+        let rM = (interest / 100) / 12  // monthly interest
         let N = noOfPayments
         let PMT = monthlyPayment
         
-        let P = (PMT / r) * (1 - (1 / pow(1 + r, N)))
+        let P = ( PMT * (pow((rM + 1), N) - 1) * pow((rM + 1), -N) ) / rM
 
         return P.toFixed(2)
     }
@@ -63,11 +63,12 @@ extension UIViewController {
     /// Calculate the estimation of monthly payment value,
     /// - Returns: Monthly Payment: Double
     func estimateLoanMonthlyPayment(presentValue: Double, interest: Double, noOfPayments: Double) -> Double {
-        let r = (interest / 100.0) / 12
+        let rM = (interest / 100.0) / 12  // monthly interest
         let P = presentValue
-        let N = noOfPayments
+        let N = noOfPayments    // N = 12t
         
-        let PMT = (r * P) / (1 - pow(1 + r, -N))
+//        let PMT = (rM * P) / (1 - pow(1 + rM, -N))
+        let PMT = ( (P * rM) * pow((1 + rM), N) ) / (pow((1 + rM), N) - 1)
         
         return PMT.toFixed(2)
     }
@@ -85,7 +86,7 @@ extension UIViewController {
         let minMonthlyPayment = estimateLoanMonthlyPayment(presentValue: presentValue, interest: interest, noOfPayments: 1) - presentValue
         
         if Int(monthlyPayment) <= Int(minMonthlyPayment) {
-            // TODO: show an alert instead of throwing an error?
+            // show an alert instead of just throwing an error?
             //  OR try, catch wherever called
             throw calculationErr.runtimeError("Invalid monthly payment")
         }
@@ -93,8 +94,14 @@ extension UIViewController {
         let PMT = monthlyPayment
         let P = presentValue
         let rM = (interest / 100.0) / 12 // monthly interest
-        let k = PMT / rM
-        let N = (log(k / (k - P)) / log(1 + rM))
+        
+//        let k = PMT / rM
+//        let N = (log(k / (k - P)) / log(1 + rM))
+        
+        let firstPart = log10(1 - ( (P / PMT) * rM ))
+        let secondPart = -log10(rM + 1)
+        let N = firstPart / secondPart
+        
         return Int(N)
     }
 
