@@ -14,9 +14,7 @@ extension UIViewController {
     // for all - convert number of payments to number of years if the number of years toggle isn't on - do this in the controller
         // all payments and compound interest and be considered to be monthly. So, for example 60 payments is equivalent to 5 years
     // when displaying the amount, this needs to be multiplied by 12, if the toggle for years was off.
-    
-//    TODO: define compoundsPerYear as a global constant & insert when calling a function
-    
+        
     /// Calculate the estimation of Principle investment amount (Present Value) , without monthly contributions (fixed sum)
     /// - Returns: Principle Investment value (Present Value): Double
     func estimatePrincpleAmountFS(futureValue: Double, interest: Double, timeInYears: Double, compoundsPerYear: Double) -> Double {
