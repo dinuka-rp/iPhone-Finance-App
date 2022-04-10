@@ -13,6 +13,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ebW-g1-OT0" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="H2m-yu-kDT"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uCN-ni-jfR">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -106,6 +107,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FW3-oS-fF5"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="OGx-su-XMf"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -129,6 +131,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="SLc-yl-cGt"/>
                                                             <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="arW-4p-5Rc"/>
                                                         </connections>
                                                     </textField>
@@ -153,6 +156,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C5D-g0-BRa"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="DUD-zd-BZB"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -176,6 +180,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4br-CI-1jl"/>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="6UU-nS-JxK"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -198,6 +203,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
+                                                            <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="Psm-nC-Zn4"/>
                                                             <action selector="didTouchTextField:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsh-b7-DfD"/>
                                                         </connections>
                                                     </textField>
@@ -367,6 +373,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="Lgl-mK-umT"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="t7Z-3K-IkN"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -391,6 +398,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="9nw-iK-EBZ"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="xoL-6v-EXw"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -413,6 +421,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="dzc-ZI-plf"/>
                                                             <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="u4s-qQ-PEn"/>
                                                         </connections>
                                                     </textField>
@@ -438,6 +447,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchUpInside" id="VB9-F2-Qgu"/>
+                                                            <action selector="didTouchTextField:" destination="NFt-db-Gxd" eventType="touchDown" id="qjd-A1-pC5"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -502,6 +512,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Simple Savings" image="banknote" catalog="system" id="YGm-4X-Q6x"/>
+                    <navigationItem key="navigationItem" id="Aew-dI-L0X"/>
                     <connections>
                         <outlet property="clearAllButton" destination="sMl-F8-v0k" id="uq9-7B-8Y4"/>
                         <outlet property="keyboard" destination="eiY-c6-h95" id="WUB-dw-hc8"/>
@@ -604,6 +615,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="A8S-Rd-boB"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="igZ-4o-7pS"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -628,6 +640,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="76t-7B-Cj9"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="7CK-YL-qbz"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -651,6 +664,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="9oS-T6-cid"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="qUC-aS-soe"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -674,6 +688,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchUpInside" id="dgT-ff-zfB"/>
+                                                            <action selector="didTouchTextField:" destination="pOK-bh-IZd" eventType="touchDown" id="oC6-fe-cg6"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -890,21 +905,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfC-Va-srI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-855" y="1710"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="EX7-S1-YlM">
-            <objects>
-                <viewController id="sqB-IB-z3v" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XEB-FF-IaJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="U6O-rq-4GV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DJ7-MM-Ez2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1368" y="92"/>
         </scene>
         <!--Help-->
         <scene sceneID="MVy-V4-VSR">

@@ -151,6 +151,14 @@ class LoanController: UIViewController {
 
         saveObjInUserDefaults(loan: loan)   // update UserDefaults value
         
+        if lastCalculatedTfTag != nil {
+            let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+        
+            // reset border of last calculated textfield was changed and all fields aren't full
+            lastCalculatedTf?.layer.borderColor = nil
+            lastCalculatedTf?.layer.borderWidth = 0
+        }
+        
         // hide clear all button
         clearAllButton.isHidden = true
     }
@@ -168,12 +176,14 @@ class LoanController: UIViewController {
         
         let isCalculatable = isAllButOneFilled || (isAllFilled && !isLastCalculatedTfSame)
         
-        let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
-        
-        if isLastCalculatedTfSame && !isAllFilled {
-            // reset border of last calculated textfield was changed and all fields aren't full
-            lastCalculatedTf?.layer.borderColor = nil
-            lastCalculatedTf?.layer.borderWidth = 0
+        if lastCalculatedTfTag != nil {
+            let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+            
+            if isLastCalculatedTfSame && !isAllFilled {
+                // reset border of last calculated textfield was changed and all fields aren't full
+                lastCalculatedTf?.layer.borderColor = nil
+                lastCalculatedTf?.layer.borderWidth = 0
+            }
         }
         
         // check if it's possible to make a calculation
@@ -187,7 +197,7 @@ class LoanController: UIViewController {
             if textFieldTBC?.tag != nil {
                 lastCalculatedTfTag = textFieldTBC!.tag
             } else {
-                textFieldTBC = lastCalculatedTf
+                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
@@ -245,6 +255,7 @@ class LoanController: UIViewController {
                 } catch{
                  // TODO: show alert?
                     print(error)
+                    dispalyOKAlert(message: "Monthly payment is below the minimum required monthly payment", title: "Invalid Monthly Payment")
                 }
             default:
                 return

@@ -152,15 +152,15 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JRY-DP-hq3">
                             <rect key="frame" x="0.0" y="241.5" width="398" height="72.5"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0In-B7-1Ei">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0In-B7-1Ei">
                                     <rect key="frame" x="0.0" y="0.0" width="127.5" height="72.5"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5f-Xv-AEn">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="33.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="60.5" height="72.5"/>
                                             <color key="tintColor" systemColor="systemGrayColor"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" title="+/-" cornerStyle="capsule">
-                                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                            <buttonConfiguration key="configuration" style="tinted" title="+/-" cornerStyle="large">
+                                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="baseForegroundColor" systemColor="systemGrayColor"/>
                                                 <color key="baseBackgroundColor" systemColor="systemGrayColor"/>
                                             </buttonConfiguration>
@@ -169,11 +169,11 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVb-BP-gCt">
-                                            <rect key="frame" x="0.0" y="39.5" width="127.5" height="33"/>
+                                            <rect key="frame" x="66.5" y="0.0" width="61" height="72.5"/>
                                             <color key="tintColor" systemColor="systemGrayColor"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" title="." cornerStyle="capsule">
-                                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
+                                            <buttonConfiguration key="configuration" style="tinted" title="." cornerStyle="large">
+                                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="24"/>
                                                 <color key="baseForegroundColor" systemColor="systemGrayColor"/>
                                                 <color key="baseBackgroundColor" systemColor="systemGrayColor"/>
                                             </buttonConfiguration>

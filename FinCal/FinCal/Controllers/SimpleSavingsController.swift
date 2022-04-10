@@ -152,6 +152,14 @@ class SimpleSavingsController: UIViewController {
         
         saveObjInUserDefaults(simpleSaving: simpleSaving)   // update UserDefaults value
         
+        if lastCalculatedTfTag != nil {
+            let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+        
+            // reset border of last calculated textfield was changed and all fields aren't full
+            lastCalculatedTf?.layer.borderColor = nil
+            lastCalculatedTf?.layer.borderWidth = 0
+        }
+        
         // hide clear all button
         clearAllButton.isHidden = true
     }
@@ -170,12 +178,14 @@ class SimpleSavingsController: UIViewController {
         
         let isCalculatable = isAllButOneFilled || (isAllFilled && !isLastCalculatedTfSame)
         
-        let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
-        
-        if isLastCalculatedTfSame && !isAllFilled {
-            // reset border of last calculated textfield was changed and all fields aren't full
-            lastCalculatedTf?.layer.borderColor = nil
-            lastCalculatedTf?.layer.borderWidth = 0
+        if lastCalculatedTfTag != nil {
+            let lastCalculatedTf = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
+            
+            if isLastCalculatedTfSame && !isAllFilled {
+                // reset border of last calculated textfield was changed and all fields aren't full
+                lastCalculatedTf?.layer.borderColor = nil
+                lastCalculatedTf?.layer.borderWidth = 0
+            }
         }
         
         // check if it's possible to make a calculation
@@ -189,7 +199,7 @@ class SimpleSavingsController: UIViewController {
             if textFieldTBC?.tag != nil {
                 lastCalculatedTfTag = textFieldTBC!.tag
             } else {
-                textFieldTBC = lastCalculatedTf
+                textFieldTBC = getTextFieldByTag(tag: lastCalculatedTfTag!, textFields: textFields)
             }
 
             // get all values in textfields and assign to relevant variables, to pass into functions
