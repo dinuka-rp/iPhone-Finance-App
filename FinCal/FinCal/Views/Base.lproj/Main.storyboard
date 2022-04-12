@@ -838,7 +838,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgd-LS-wvS">
                                                         <rect key="frame" x="0.0" y="69" width="379" height="101.5"/>
-                                                        <string key="text">All input data in the input cells will be automatically saved for convenienve to be used later and can be cleared using the "Clear All" button that appears at the top left of the screen when at least one input field has been filled.</string>
+                                                        <string key="text">All input data in the input cells will be automatically saved for convenience to be used later and can be cleared using the "Clear All" button that appears at the top left of the screen when at least one input field has been filled.</string>
                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -963,7 +963,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5c-U3-FWS">
                                                         <rect key="frame" x="0.0" y="69" width="379" height="101.5"/>
-                                                        <string key="text">All input data in the input cells will be automatically saved for convenienve to be used later and can be cleared using the "Clear All" button that appears at the top left of the screen when at least one input field has been filled.</string>
+                                                        <string key="text">All input data in the input cells will be automatically saved for convenience to be used later and can be cleared using the "Clear All" button that appears at the top left of the screen when at least one input field has been filled.</string>
                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1088,7 +1088,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYV-lU-lau">
                                                         <rect key="frame" x="0.0" y="69" width="379" height="101.5"/>
-                                                        <string key="text">All input data in the input cells will be automatically saved for convenienve to be used later and can be cleared using the "Clear All" button that appears at the top left of the screen when at least one input field has been filled.</string>
+                                                        <string key="text">All input data in the input cells will be automatically saved for convenience to be used later and can be cleared using the "Clear All" button that appears at the top left of the screen when at least one input field has been filled.</string>
                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
